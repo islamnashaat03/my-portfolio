@@ -131,6 +131,7 @@ body {
 .btn.primary {
     background: var(--primary-color);
     color: white;
+    border: 0;
 }
 
 .btn.secondary {
@@ -476,6 +477,85 @@ body {
         border: none;
         font-size: 2rem;
         cursor: pointer;
+        flex-direction: column;
+        width: 36px;
+        height: 36px;
+        gap: 5px;
+        position: relative;
+        transform: rotate(0deg);
+        transition: 0.5s ease-in-out;
+        span {
+            background-color: var(--primary-color);
+            display: block;
+            position: absolute;
+            height: 7px;
+            width: 50%;
+            opacity: 1;
+            transition: 0.5s all;
+            &:nth-child(1),
+            &:nth-child(2) {
+                top: 2px;
+            }
+            &:nth-child(odd) {
+                left: 1px;
+                border-radius: 9px 0 0 9px;
+            }
+            &:nth-child(even) {
+                right: 1px;
+                border-radius: 0 9px 9px 0;
+            }
+            &:nth-child(3),
+            &:nth-child(4) {
+                top: 14px;
+            }
+            &:nth-child(5),
+            &:nth-child(6) {
+                top: 26px;
+            }
+        }
+
+        &.opened {
+            span {
+                width: 65%;
+                transition: 0.5s all;
+                &:nth-child(1),
+                &:nth-child(6) {
+                    transform: rotate(45deg);
+                }
+                &:nth-child(2),
+                &:nth-child(5) {
+                    transform: rotate(-45deg);
+                }
+                &:nth-child(1) {
+                    left: 4px;
+                    top: -1px;
+                    transform-origin: top left;
+                }
+                &:nth-child(2) {
+                    right: 4px;
+                    top: -1px;
+                    transform-origin: top right;
+                }
+                &:nth-child(3) {
+                    left: 50%;
+                    opacity: 0;
+                }
+                &:nth-child(4) {
+                    right: 50%;
+                    opacity: 0;
+                }
+                &:nth-child(5) {
+                    left: 4px;
+                    top: 30px;
+                    transform-origin: bottom left;
+                }
+                &:nth-child(6) {
+                    right: 4px;
+                    top: 30px;
+                    transform-origin: bottom right;
+                }
+            }
+        }
     }
 
     .menu-btn:hover {
@@ -537,4 +617,120 @@ body {
 }
 section {
     padding: 80px 0;
+}
+/* Mobile Navigation Styles */
+.nav .nav-links {
+    position: absolute;
+    top: 80px;
+    left: -500px;
+    width: 100%;
+    background: var(--background-color);
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.nav .nav-links.show {
+    left: 0;
+    animation: slideDown 0.3s ease-out;
+}
+
+.nav.show .nav-links a {
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translatex(-500px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Project Card Transitions */
+.project-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Form Input Animations */
+.form-group input,
+.form-group textarea {
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(35, 122, 175, 0.2);
+}
+
+.typing-text {
+    font-weight: 600;
+    text-transform: capitalize;
+    min-height: 30px;
+    transition: 0.5s all;
+}
+
+/* Additional Responsive Adjustments */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .typing-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        min-height: 30px;
+        transition: 0.5s all;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Skill Tags Animation */
+.skill-tags span {
+    transition: transform 0.3s ease;
+}
+
+.skill-tags span:hover {
+    transform: scale(1.1);
+}
+
+/* Timeline Animation */
+.timeline-item {
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
 }
