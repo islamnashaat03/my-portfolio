@@ -159,3 +159,140 @@ function typeEffect() {
 
 // Start typing animation
 typeEffect();
+
+// Canvas Animation
+class ParticleCanvas {
+  constructor() {
+    this.canvas = document.createElement("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.particles = [];
+    this.mousePosition = {
+      x: null,
+      y: null,
+      radius: 150,
+    };
+
+    this.init();
+  }
+
+  init() {
+    // Add canvas to the hero section
+    const hero = document.querySelector(".hero");
+    this.canvas.style.position = "absolute";
+    this.canvas.style.top = "0";
+    this.canvas.style.left = "0";
+    this.canvas.style.width = "100%";
+    this.canvas.style.height = "100%";
+    this.canvas.style.zIndex = "0";
+    hero.insertBefore(this.canvas, hero.firstChild);
+
+    // Set canvas size
+    this.resize();
+
+    // Create particles
+    this.createParticles();
+
+    // Event listeners
+    window.addEventListener("resize", () => this.resize());
+    document.addEventListener("mousemove", (e) => this.handleMouseMove(e));
+
+    // Start animation
+    this.animate();
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+
+    // Recreate particles on resize
+    this.createParticles();
+  }
+
+  createParticles() {
+    this.particles = [];
+    const numberOfParticles = Math.floor(
+      (this.canvas.width * this.canvas.height) / 15000
+    );
+
+    for (let i = 0; i < numberOfParticles; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: Math.random() * 2 - 1,
+        speedY: Math.random() * 2 - 1,
+        color: "#237aaf",
+      });
+    }
+  }
+
+  handleMouseMove(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.mousePosition.x = e.clientX - rect.left;
+    this.mousePosition.y = e.clientY - rect.top;
+  }
+
+  drawParticles() {
+    this.particles.forEach((particle) => {
+      // Update position
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+
+      // Wrap around edges
+      if (particle.x > this.canvas.width) particle.x = 0;
+      if (particle.x < 0) particle.x = this.canvas.width;
+      if (particle.y > this.canvas.height) particle.y = 0;
+      if (particle.y < 0) particle.y = this.canvas.height;
+
+      // Draw particle
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = particle.color;
+      this.ctx.fill();
+
+      // Connect particles
+      this.particles.forEach((otherParticle) => {
+        const dx = particle.x - otherParticle.x;
+        const dy = particle.y - otherParticle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = `rgba(35, 122, 175, ${1 - distance / 100})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.moveTo(particle.x, particle.y);
+          this.ctx.lineTo(otherParticle.x, otherParticle.y);
+          this.ctx.stroke();
+        }
+
+        // Mouse interaction
+        if (this.mousePosition.x != null) {
+          const dx = particle.x - this.mousePosition.x;
+          const dy = particle.y - this.mousePosition.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < this.mousePosition.radius) {
+            const force =
+              (this.mousePosition.radius - distance) /
+              this.mousePosition.radius;
+            const directionX = dx / distance;
+            const directionY = dy / distance;
+            particle.x += directionX * force;
+            particle.y += directionY * force;
+          }
+        }
+      });
+    });
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawParticles();
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// Initialize canvas when the page loads
+window.addEventListener("load", () => {
+  new ParticleCanvas();
+});
