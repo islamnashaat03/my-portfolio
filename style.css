@@ -238,7 +238,7 @@ body {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 3rem 2rem;
 }
 .project-card {
     display: flex;
@@ -267,7 +267,7 @@ body {
     }
     &:hover {
         img {
-            top: -100%;
+            top: -300%;
         }
     }
 }
