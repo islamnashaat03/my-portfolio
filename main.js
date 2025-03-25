@@ -296,3 +296,43 @@ class ParticleCanvas {
 window.addEventListener("load", () => {
   new ParticleCanvas();
 });
+
+
+
+const logo = document.querySelectorAll('svg path, svg polygon');
+// console.log(logo);
+for (let i = 0; i < logo.length; i++) {
+  console.log(`letter ${i} is ${logo[i].getTotalLength()}`);
+}
+/**
+ * Fade out the loader after the page has finished loading
+ */
+function fadeLoader() {
+  // Get the loader element and its SVG child
+  const loader = document.querySelector('.loader');
+  const svg = loader.querySelector('svg');
+
+  // Set the opacity of the loader and SVG back to 1
+  loader.style.opacity = 1;
+  svg.style.opacity = 1;
+
+  /**
+   * Recursive function to fade out the loader
+   */
+  const fadeOut = () => {
+    // Decrease the opacity by 0.01
+    if ((loader.style.opacity -= 0.01) < 0) {
+      // If the opacity is 0, hide the loader and SVG
+      loader.style.display = 'none';
+      svg.style.display = 'none';
+    } else {
+      // Otherwise, call the function again after a short delay
+      requestAnimationFrame(fadeOut);
+    }
+  };
+
+  // Start the fade out after a short delay
+  setTimeout(() => requestAnimationFrame(fadeOut), 2000);
+}
+window.addEventListener("load", fadeLoader);
+
