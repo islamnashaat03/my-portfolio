@@ -100,6 +100,37 @@ body {
     }
     
 }
+
+
+        /* Styling for the scroll-to-top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            color: #00a1f8;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Styling for the circular progress bar */
+        .progress-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 /* Navigation */
 .nav {
     position: fixed;
@@ -299,7 +330,7 @@ body {
 }
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 3rem 2rem;
 }
 .project-card {
@@ -307,35 +338,66 @@ body {
     flex-direction: column;
     align-items: center;
     background: white;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     /* margin-bottom: 2rem; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    position: relative;
+    &::before {
+        content: "";
+        width: 0%;
+        background-color: var(--primary-color);
+        height: 5px;
+        inset-inline-start: 0;
+        position: absolute;
+        top: -5px;
+        z-index: 22;
+        transition: 2s ease;
+    }
+    &:hover {
+        &::before {
+            width: 100%;
+            background-color: var(--primary-color);
+            transition: 2s ease;
+        }
+        .project-image {
+            transition: 0.5s all ease;
+            img {
+                transform: translateY(calc(-100% + 250px));
+            }
+        }
+    }
 }
 
 .project-image {
     width: 100%;
     height: 250px;
-    border-radius: 10px 10px 0 0;
+    /* border-radius: 10px 10px 0 0; */
     overflow: hidden;
     position: relative;
+    transition: 0.5s all linear;
     img {
         object-fit: cover;
         width: 100%;
         object-position: top;
-        position: absolute;
-        top: 0;
-        transition: 0.5s all;
+        transition: transform 2s ease
     }
-    &:hover {
-        img {
-            top: -300%;
-        }
-    }
+   
 }
 
+@keyframes imageHover {
+    0% {
+        top: 0;
+        bottom: auto;
+    }
+    100% {
+        top: auto;
+        bottom: 0;
+    }
+    
+}
 .project-info {
-    padding: 2rem;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -344,18 +406,24 @@ body {
 .project-info h3 {
     font-size: 1.5rem;
     /* margin-bottom: 1rem; */
+    min-height: 40px
 }
 
 .project-info p {
     font-size: 1rem;
     /* margin-bottom: 2rem; */
+    min-height: 150px
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 10px;
     /* margin-block: 1rem; */
+    min-height: 100px;
+    span{
+        height: fit-content;
+    }
 }
 
 .project-tags span {
@@ -368,6 +436,34 @@ body {
 .project-info .btn {
     /* width: fit-content; */
     margin: auto;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    transition: 0.5s all;
+    span{
+        transform: translateX(8px);
+        transition: 0.5s all;
+    }
+    i{
+        transform: translateX(-30px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s all;
+    }
+    &:hover {
+        
+        span{
+            transform: translateX(0px);
+;
+            transition: 0.5s all;
+        }
+        i{
+            transform: translateX(0px);
+            opacity: 1;
+            visibility: visible;
+            transition: 0.5s all;
+        }
+    }
 }
 
 /* Experience Section */

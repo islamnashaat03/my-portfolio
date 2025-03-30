@@ -15,7 +15,8 @@
 
 <body>
     <!-- loader -->
-    <div class="loader">
+  <!--  <div class="loader">
+
         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" data-name="Layer 3" viewBox="0 0 915.06 939.57">
             <defs>
             </defs>
@@ -26,6 +27,15 @@
                 d="M281.67,159.46c22.97,15.6,30.43,48.42,21.47,73.89-22.88,65.03-122.66,46.41-120.35-26.91,1.51-47.9,60.67-72.92,98.88-46.98Z" />
         </svg>
     </div>
+    -->
+    <!-- Scroll to top button with an embedded SVG circular progress bar -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fa-solid fa-arrow-up"></i>
+        <svg class="progress-circle" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="#fff" stroke-width="6" fill="none"></circle>
+            <circle id="progress" cx="50" cy="50" r="40" stroke="#007bff" stroke-width="6" fill="none" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round"></circle>
+        </svg>
+    </button>
     <!-- Navigation -->
     <nav class="nav">
         <div class="container">
@@ -98,8 +108,6 @@
                             <span>SASS</span>
                             <span>Git</span>
                             <span>PhP</span>
-                            <span>Vue.js</span>
-                            <span>React.js</span>
                         </div>
                         <h3>Familiar With</h3>
                         <div class="skill-tags">
@@ -151,46 +159,50 @@
                 <button class="filter-btn" data-filter="wordpress">WordPress</button>
                 <button class="filter-btn" data-filter="frontend">Frontend</button>
                 <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="salla">Salla</button>
             </div>
             <div class="projects-grid">
                 <!-- E3tmad Club -->
                 <div class="project-card" data-category="wordpress ecommerce">
                     <div class="project-image">
-                        <img src="/images/screens/ale3tmad-club.png" alt="E3tmad Club">
+                        <img src="/images/screens/webp/ale3tmad-club.webp" alt="E3tmad Club">
                     </div>
                     <div class="project-info">
                         <h3>E3tmad Club</h3>
-                        <p>Integrated website and e-commerce solution
-                            for
-                            KSA client</p>
+                        <p>A fully integrated website and e-commerce solution for E3tmad Club, featuring a custom WordPress theme, WooCommerce integration, and a seamless user experience tailored to the client's needs.</p>
                         <div class="project-tags">
                             <span>WordPress</span>
                             <span>WooCommerce</span>
                             <span>Custom Theme</span>
                         </div>
-                        <a target="_blank" href="https://ale3tmad-club.com" class="btn secondary">View Project</a>
+                        <a target="_blank" href="https://ale3tmad-club.com" class="btn secondary">
+                            <span> view Project </span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <!-- nagd Club -->
                 <div class="project-card" data-category="wordpress ">
                     <div class="project-image">
-                        <img src="images/screens/najdclub.png" alt="Najd Club">
+                        <img src="images/screens/webp/najdclub.webp" alt="Najd Club">
                     </div>
                     <div class="project-info">
                         <h3>Najd Club</h3>
-                        <p>Integrated website solution for KSA
-                            client</p>
+                        <p>A comprehensive website solution for Najd Club, featuring a custom WordPress theme and seamless user experience.</p>
                         <div class="project-tags">
                             <span>WordPress</span>
                             <span>Custom Theme</span>
                         </div>
-                        <a target="_blank" href="https://najd-club.com" class="btn secondary">View Project</a>
+                        <a target="_blank" href="https://islam.aait.app/nagd-club/" class="btn secondary">
+                            <span>View Project</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <!-- Blood Bank SPA -->
                 <div class="project-card" data-category="frontend">
                     <div class="project-image">
-                        <img src="images/screens/blood-bank.png" alt="Blood Bank SPA">
+                        <img src="images/screens/webp/blood-bank.webp" alt="Blood Bank SPA">
                     </div>
                     <div class="project-info">
                         <h3>Blood Bank SPA</h3>
@@ -201,45 +213,42 @@
                             <span>JavaScript</span>
                             <span>REST API</span>
                         </div>
-                        <a target="_blank" href="https://blood-bank-vue.netlify.app" class="btn secondary">View
-                            Project</a>
+                        <a target="_blank" href="https://blood-bank-vue.netlify.app" class="btn secondary">
+                            <span>View Project</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <!--  marafeq elbnaaa store -->
                 <div class="project-card" data-category="wordpress ecommerce">
                     <div class="project-image">
-                        <img src="images/screens/marafeqalbnaa.png" alt="Marafeq Elbnaaa Store">
+                        <img src="images/screens/webp/marafeqalbnaa.webp" alt="Marafeq Elbnaaa Store">
                     </div>
                     <div class="project-info">
                         <h3>Marafeq Elbnaaa Store</h3>
-                        <p>e-commerce solution
-                            for Marafeq Elbnaaa Store</p>
-                        KSA client</p>
+                        <p>A fully customized e-commerce platform for Marafeq Elbnaaa Store, featuring seamless integration with WooCommerce and a user-friendly design tailored for optimal shopping experiences.</p>
                         <div class="project-tags">
                             <span>WordPress</span>
                             <span>WooCommerce</span>
-                            <span>Custom Theme</span>
+                            <span>Elementor</span>
                         </div>
-                        <a target="_blank" href="https://marafeqalbnaa.com/" class="btn secondary">View Project</a>
+                        <a target="_blank" href="https://marafeqalbnaa.com/" class="btn secondary"><span>View Project</span>
+                            <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <!--  alkobashi furnture  store -->
-                <div class="project-card" data-category="wordpress ecommerce">
+                <!--  sakura-gifts  store -->
+                <div class="project-card" data-category="salla">
                     <div class="project-image">
-                        <img src="images/screens/alkobaishi-furniture.png" alt="alkobaishi-furniture Store">
+                        <img src="images/screens/webp/sakura-gifts.webp" alt="alkobaishi-furniture Store">
                     </div>
                     <div class="project-info">
-                        <h3>alkobaishi-furniture Store</h3>
-                        <p>e-commerce solution
-                            for Marafe Store</p>
-                        KSA client</p>
+                        <h3>Sakura Gifts Store</h3>
+                        <p>A beautifully designed e-commerce platform for Sakura Gifts Store, offering a seamless shopping experience with modern UI/UX.</p>
                         <div class="project-tags">
-                            <span>WordPress</span>
-                            <span>WooCommerce</span>
-                            <span>Custom Theme</span>
+                            <span>Salla</span>
                         </div>
-                        <a target="_blank" href="https://alkobaishi-furniture.com/" class="btn secondary">View
-                            Project</a>
+                        <a target="_blank" href="https://ry.sakura-gifts.com/" class="btn secondary"><span>View Project</span>
+                            <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -299,18 +308,18 @@
                         <h3>Email</h3>
                         <p>islamnashaat03@gmail.com</p>
                     </a>
-                    <a href="tel:+201065740616" class="contact-item">
+                    <a href="tel:+201558631631" class="contact-item">
                         <i class="fas fa-phone"></i>
                         <h3>Phone</h3>
-                        <p>+201065740616</p>
+                        <p>+201558631631</p>
                     </a>
-                    <div class="contact-item">
+                    <a href="https://wa.link/pzmjbj" class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <h3>Location</h3>
-                        <p>Egypt</p>
-                    </div>
+                        <h3>WhatsApp</h3>
+                        <p>+201558631631</p>
+                    </a>
                 </div>
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" style="display :none;">
                     <div class="form-group">
                         <input type="text" id="name" name="name" required placeholder="Your Name">
                     </div>

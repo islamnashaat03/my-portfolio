@@ -297,9 +297,7 @@ window.addEventListener("load", () => {
   new ParticleCanvas();
 });
 
-
-
-const logo = document.querySelectorAll('svg path, svg polygon');
+const logo = document.querySelectorAll("svg path, svg polygon");
 // console.log(logo);
 for (let i = 0; i < logo.length; i++) {
   console.log(`letter ${i} is ${logo[i].getTotalLength()}`);
@@ -309,8 +307,8 @@ for (let i = 0; i < logo.length; i++) {
  */
 function fadeLoader() {
   // Get the loader element and its SVG child
-  const loader = document.querySelector('.loader');
-  const svg = loader.querySelector('svg');
+  const loader = document.querySelector(".loader");
+  const svg = loader.querySelector("svg");
 
   // Set the opacity of the loader and SVG back to 1
   loader.style.opacity = 1;
@@ -323,8 +321,8 @@ function fadeLoader() {
     // Decrease the opacity by 0.01
     if ((loader.style.opacity -= 0.01) < 0) {
       // If the opacity is 0, hide the loader and SVG
-      loader.style.display = 'none';
-      svg.style.display = 'none';
+      loader.style.display = "none";
+      svg.style.display = "none";
     } else {
       // Otherwise, call the function again after a short delay
       requestAnimationFrame(fadeOut);
@@ -336,3 +334,31 @@ function fadeLoader() {
 }
 window.addEventListener("load", fadeLoader);
 
+        // Select the scroll-to-top button and progress circle
+        const scrollToTopBtn = document.getElementById("scrollToTop");
+        const progressCircle = document.getElementById("progress");
+        
+        // Circumference of the progress circle (calculated from its radius)
+        const circumference = 251.2;
+        
+        // Event listener for scroll event to update progress bar and button visibility
+        window.addEventListener("scroll", () => {
+            let scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let scrollTop = document.documentElement.scrollTop;
+            
+            // Calculate progress percentage and update stroke-dashoffset
+            let progress = (scrollTop / scrollHeight) * circumference;
+            progressCircle.style.strokeDashoffset = circumference - progress;
+            
+            // Show or hide the button based on scroll position
+            if (scrollTop > 100) {
+                scrollToTopBtn.style.opacity = 1;
+            } else {
+                scrollToTopBtn.style.opacity = 0;
+            }
+        });
+
+        // Event listener for button click to smoothly scroll to the top
+        scrollToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
