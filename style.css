@@ -240,7 +240,7 @@ body {
 
 /* About Section */
 .about {
-    background: var(--gray-light);
+    /* background: var(--gray-light); */
 }
 
 .section-title {
@@ -301,6 +301,7 @@ body {
 /* Projects Section */
 .projects {
     gap: 2rem;
+    background: var(--gray-light);
 }
 .project-filters {
     display: flex;
@@ -467,6 +468,9 @@ body {
 }
 
 /* Experience Section */
+.experience {
+    background: var(--gray-light);
+}
 .project-card.hide {
     display: none;
 }
