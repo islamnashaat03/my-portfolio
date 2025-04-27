@@ -238,15 +238,18 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* About Section */
-.about {
-    /* background: var(--gray-light); */
-}
+
 
 .section-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
 }
 
 .about-content {
@@ -435,7 +438,7 @@ body {
     font-size: 0.9rem;
 }
 .project-info .btn {
-    /* width: fit-content; */
+    width: fit-content;
     margin: auto;
     display: flex;
     align-items: center;
