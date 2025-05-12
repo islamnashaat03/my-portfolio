@@ -575,62 +575,7 @@
     </footer>
 
     <script src="main.js"></script>
-    <script>
-        // Form submission handling
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            
-            // Show loading state
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
-            
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    // Show success message
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'form-message success';
-                    successMessage.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully! I\'ll get back to you soon.';
-                    contactForm.reset();
-                    contactForm.appendChild(successMessage);
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                // Show error message
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'form-message error';
-                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Oops! Something went wrong. Please try again later.';
-                contactForm.appendChild(errorMessage);
-                
-                // Remove error message after 5 seconds
-                setTimeout(() => {
-                    errorMessage.remove();
-                }, 5000);
-            } finally {
-                // Reset button state
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
-    </script>
+    
 </body>
 
 </html>
