@@ -297,11 +297,6 @@ window.addEventListener("load", () => {
   new ParticleCanvas();
 });
 
-const logo = document.querySelectorAll("svg path, svg polygon");
-// console.log(logo);
-for (let i = 0; i < logo.length; i++) {
-  console.log(`letter ${i} is ${logo[i].getTotalLength()}`);
-}
 /**
  * Fade out the loader after the page has finished loading
  */
