@@ -54,41 +54,190 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// Projects Filter Animation
-const filterBtns = document.querySelectorAll(".filter-btn");
-const projectCards = document.querySelectorAll(".project-card");
-
-filterBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    // Remove active class from all buttons
-    filterBtns.forEach((btn) => btn.classList.remove("active"));
-    // Add active class to clicked button
-    btn.classList.add("active");
-
-    const category = btn.getAttribute("data-filter");
-
-    projectCards.forEach((card) => {
-      // Add fade out animation
+// Projects Filter and Pagination
+class ProjectsManager {
+  constructor() {
+    this.projectsPerPage = 9;
+    this.currentPage = 1;
+    this.currentFilter = 'all';
+    this.allProjects = Array.from(document.querySelectorAll(".project-card"));
+    this.filteredProjects = [...this.allProjects];
+    
+    this.filterBtns = document.querySelectorAll(".filter-btn");
+    this.projectsGrid = document.getElementById("projectsGrid");
+    this.paginationInfo = document.getElementById("paginationInfo");
+    this.paginationNumbers = document.getElementById("paginationNumbers");
+    this.prevBtn = document.getElementById("prevPage");
+    this.nextBtn = document.getElementById("nextPage");
+    
+    this.init();
+  }
+  
+  init() {
+    this.setupEventListeners();
+    this.renderProjects();
+    this.updatePagination();
+  }
+  
+  setupEventListeners() {
+    // Filter buttons
+    this.filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        
+        this.currentFilter = btn.getAttribute("data-filter");
+        this.currentPage = 1;
+        this.filterProjects();
+        this.renderProjects();
+        this.updatePagination();
+      });
+    });
+    
+    // Pagination buttons
+    this.prevBtn.addEventListener("click", () => {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.renderProjects();
+        this.updatePagination();
+        this.scrollToProjectsSection();
+      }
+    });
+    
+    this.nextBtn.addEventListener("click", () => {
+      const totalPages = Math.ceil(this.filteredProjects.length / this.projectsPerPage);
+      if (this.currentPage < totalPages) {
+        this.currentPage++;
+        this.renderProjects();
+        this.updatePagination();
+        this.scrollToProjectsSection();
+      }
+    });
+  }
+  
+  filterProjects() {
+    if (this.currentFilter === 'all') {
+      this.filteredProjects = [...this.allProjects];
+    } else {
+      this.filteredProjects = this.allProjects.filter(card => 
+        card.getAttribute("data-category").includes(this.currentFilter)
+      );
+    }
+  }
+  
+  renderProjects() {
+    const startIndex = (this.currentPage - 1) * this.projectsPerPage;
+    const endIndex = startIndex + this.projectsPerPage;
+    const projectsToShow = this.filteredProjects.slice(startIndex, endIndex);
+    
+    // Hide all projects first
+    this.allProjects.forEach(card => {
+      card.style.display = "none";
       card.style.opacity = "0";
       card.style.transform = "scale(0.8)";
-
-      setTimeout(() => {
-        if (
-          category === "all" ||
-          card.getAttribute("data-category").includes(category)
-        ) {
-          card.style.display = "flex";
-          // Add fade in animation
-          setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "scale(1)";
-          }, 50);
-        } else {
-          card.style.display = "none";
-        }
-      }, 300);
     });
-  });
+    
+    // Show filtered projects with animation
+    setTimeout(() => {
+      projectsToShow.forEach((card, index) => {
+        card.style.display = "flex";
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "scale(1)";
+        }, index * 50);
+      });
+    }, 300);
+  }
+  
+  updatePagination() {
+    const totalProjects = this.filteredProjects.length;
+    const totalPages = Math.ceil(totalProjects / this.projectsPerPage);
+    const startProject = (this.currentPage - 1) * this.projectsPerPage + 1;
+    const endProject = Math.min(this.currentPage * this.projectsPerPage, totalProjects);
+    
+    // Update pagination info
+    this.paginationInfo.textContent = `Showing ${startProject}-${endProject} of ${totalProjects} projects`;
+    
+    // Update navigation buttons
+    this.prevBtn.disabled = this.currentPage === 1;
+    this.nextBtn.disabled = this.currentPage === totalPages;
+    
+    // Generate page numbers
+    this.generatePageNumbers(totalPages);
+  }
+  
+  generatePageNumbers(totalPages) {
+    this.paginationNumbers.innerHTML = '';
+    
+    if (totalPages <= 1) {
+      return;
+    }
+    
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    // Adjust start page if we're near the end
+    if (endPage - startPage < maxVisiblePages - 1) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    // Add first page and ellipsis if needed
+    if (startPage > 1) {
+      this.addPageNumber(1);
+      if (startPage > 2) {
+        this.addEllipsis();
+      }
+    }
+    
+    // Add visible page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      this.addPageNumber(i);
+    }
+    
+    // Add last page and ellipsis if needed
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        this.addEllipsis();
+      }
+      this.addPageNumber(totalPages);
+    }
+  }
+  
+  addPageNumber(pageNum) {
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `pagination-number ${pageNum === this.currentPage ? 'active' : ''}`;
+    pageBtn.textContent = pageNum;
+    pageBtn.addEventListener('click', () => {
+      this.currentPage = pageNum;
+      this.renderProjects();
+      this.updatePagination();
+      this.scrollToProjectsSection();
+    });
+    this.paginationNumbers.appendChild(pageBtn);
+  }
+  
+  scrollToProjectsSection() {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  }
+  
+  addEllipsis() {
+    const ellipsis = document.createElement('span');
+    ellipsis.className = 'pagination-number ellipsis';
+    ellipsis.textContent = '...';
+    this.paginationNumbers.appendChild(ellipsis);
+  }
+}
+
+// Initialize projects manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new ProjectsManager();
 });
 
 // Form Validation and Submission
