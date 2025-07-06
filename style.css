@@ -745,6 +745,9 @@ body {
     .menu-btn:hover {
         color: var(--primary-color);
     }
+            .project-card:hover .project-image img{
+        transform: translateY(calc(-100% + 150px));
+    }
     /* Mobile Navigation Styles */
     .nav .nav-links {
         position: absolute;
@@ -905,6 +908,8 @@ section {
         flex-direction: column;
         text-align: center;
     }
+
+
 }
 
 /* Skill Tags Animation */
