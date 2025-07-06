@@ -107,7 +107,7 @@
                 <button class="filter-btn" data-filter="salla">Salla</button>
                 <button class="filter-btn" data-filter="Shopify">Shopify</button>
             </div>
-            <div class="projects-grid">
+            <div class="projects-grid" id="projectsGrid">
                 <!--  UDT   -->
                 <div class="project-card" data-category="wordpress ">
                     <div class="project-image">
@@ -327,6 +327,26 @@
                         <a target="_blank" href="https://souq-gomla.com" class="btn secondary"><span>View Project</span>
                             <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    <span id="paginationInfo">Showing 1-9 of 12 projects</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="prevPage" class="pagination-btn" disabled>
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <div class="pagination-numbers" id="paginationNumbers">
+                        <!-- Page numbers will be generated here -->
+                    </div>
+                    <button id="nextPage" class="pagination-btn">
+                        Next
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
