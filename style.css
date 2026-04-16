@@ -404,6 +404,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 15px;
 }
 
 .project-info h3 {
@@ -422,6 +425,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
     /* margin-block: 1rem; */
     min-height: 100px;
     span{
@@ -438,10 +442,10 @@ body {
 }
 .project-info .btn {
     /* width: fit-content; */
-    margin: auto;
     display: flex;
     align-items: center;
     gap:10px;
+    align-self: center;
     transition: 0.5s all;
     span{
         transform: translateX(8px);
