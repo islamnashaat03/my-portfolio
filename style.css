@@ -50,6 +50,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     svg{
         width:200px;
         .cls-1{
@@ -78,6 +81,12 @@ body {
         }
 
     }
+}
+
+.loader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 
