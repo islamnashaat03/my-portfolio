@@ -60,7 +60,7 @@ class ProjectsManager {
     this.projectsPerPage = 9;
     this.currentPage = 1;
     this.currentFilter = 'all';
-    this.allProjects = Array.from(document.querySelectorAll(".project-card"));
+    this.allProjects = Array.from(document.querySelectorAll('.project-card:not([data-project-hidden="true"])'));
     this.filteredProjects = [...this.allProjects];
     
     this.filterBtns = document.querySelectorAll(".filter-btn");
