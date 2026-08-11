@@ -10,9 +10,18 @@ Results-driven Senior Frontend Developer with 3+ years of specialized experience
 
 ### Professional Experience
 
+#### Effvision – Senior WordPress Developer (Part-time)
+
+_August 1, 2025 – Present_
+
+- Work as part of a collaborative team to develop and maintain high-quality WordPress websites for international clients
+- Contribute to global projects, with a strong focus on healthcare and medical-sector websites
+- Build custom functionality and optimize performance, accessibility, usability, and reliability
+- Collaborate closely with designers, developers, and project stakeholders to deliver polished, production-ready solutions
+
 #### AAIT – WordPress Team Leader
 
-_October 2023 – Present_
+_October 2023 – August 1, 2026_
 
 - Lead and mentor a team of WordPress developers, implementing best practices and coding standards
 - Architected and delivered complex e-commerce solutions using WooCommerce

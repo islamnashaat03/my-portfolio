@@ -446,16 +446,21 @@ window.addEventListener("load", () => {
   new ParticleCanvas();
 });
 
-// Reveal the page as soon as its HTML is ready. Images can continue loading lazily.
+// Keep the branded preloader visible briefly without waiting for lazy-loaded images.
+const preloaderStartedAt = performance.now();
+
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.querySelector(".loader");
   if (!loader) return;
 
-  requestAnimationFrame(() => loader.classList.add("loader-hidden"));
+  const minimumDisplayTime = 1400;
+  const remainingTime = Math.max(0, minimumDisplayTime - (performance.now() - preloaderStartedAt));
+
+  setTimeout(() => loader.classList.add("loader-hidden"), remainingTime);
   loader.addEventListener("transitionend", () => loader.remove(), { once: true });
 
   // Failsafe for browsers that do not fire transitionend.
-  setTimeout(() => loader.remove(), 1000);
+  setTimeout(() => loader.remove(), remainingTime + 1000);
 });
 
         // Select the scroll-to-top button and progress circle
