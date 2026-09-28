@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Islamnashaat Translation Toolkit</title>
+  <desc id="desc">Indigo and blue promotional artwork for the WordPress translation plugin.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18154f"/>
+      <stop offset="0.55" stop-color="#3730a3"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#bae6fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" rx="28" fill="url(#bg)"/>
+  <circle cx="760" cy="70" r="170" fill="#fff" opacity=".06"/>
+  <circle cx="90" cy="470" r="190" fill="#38bdf8" opacity=".1"/>
+  <g transform="translate(80 85)">
+    <circle cx="92" cy="92" r="86" fill="none" stroke="url(#ring)" stroke-width="12"/>
+    <path d="M33 94a59 59 0 0 1 112-26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+    <path d="m139 44 9 27-28-4" fill="#fff"/>
+    <path d="M151 90a59 59 0 0 1-112 27" fill="none" stroke="#7dd3fc" stroke-width="9" stroke-linecap="round"/>
+    <path d="m45 141-9-27 28 4" fill="#7dd3fc"/>
+    <text x="92" y="112" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="700">iN</text>
+  </g>
+  <g fill="#fff" font-family="Arial, sans-serif">
+    <text x="285" y="145" font-size="25" font-weight="600" opacity=".82">WORDPRESS PLUGIN</text>
+    <text x="285" y="205" font-size="43" font-weight="700">Islamnashaat</text>
+    <text x="285" y="258" font-size="43" font-weight="700">Translation Toolkit</text>
+    <text x="285" y="312" font-size="21" opacity=".82">Translate WPML content with a faster review workflow.</text>
+  </g>
+  <g transform="translate(285 355)" font-family="Arial, sans-serif" font-size="18" font-weight="600">
+    <rect width="112" height="42" rx="21" fill="#fff" opacity=".14"/>
+    <text x="56" y="27" text-anchor="middle" fill="#fff">WPML</text>
+    <rect x="125" width="132" height="42" rx="21" fill="#fff" opacity=".14"/>
+    <text x="191" y="27" text-anchor="middle" fill="#fff">Elementor</text>
+    <rect x="270" width="92" height="42" rx="21" fill="#fff" opacity=".14"/>
+    <text x="316" y="27" text-anchor="middle" fill="#fff">ACF</text>
+  </g>
+</svg>

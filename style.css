@@ -314,6 +314,120 @@ body {
 .projects {
     gap: 2rem;
 }
+
+.featured-projects-showcase {
+    margin: 2.5rem 0 4rem;
+}
+
+.featured-projects-heading,
+.all-projects-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.featured-projects-heading .eyebrow,
+.all-projects-heading .eyebrow {
+    color: var(--primary-color);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.featured-projects-heading h3,
+.all-projects-heading h3 {
+    margin-top: 0.25rem;
+    font-size: 1.8rem;
+}
+
+.featured-projects-heading p {
+    max-width: 560px;
+    margin: 0;
+    color: #60717d;
+    line-height: 1.7;
+}
+
+.featured-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 245px;
+    gap: 1rem;
+}
+
+.featured-project-item {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    background: #17354a;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(24, 70, 98, 0.14);
+}
+
+.featured-project-item.featured-primary {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.featured-project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s ease;
+}
+
+.featured-project-item:hover img {
+    transform: scale(1.04);
+}
+
+.featured-project-overlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 2rem 1.5rem 1.35rem;
+    color: #fff;
+    background: linear-gradient(180deg, transparent 0%, rgba(7, 30, 45, 0.92) 55%, rgba(7, 30, 45, 0.98) 100%);
+}
+
+.featured-project-overlay > span {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    color: #8bd6ff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.featured-project-overlay h4 {
+    margin: 0 0 0.65rem;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.featured-project-overlay a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.featured-project-overlay a i {
+    transition: transform 0.25s ease;
+}
+
+.featured-project-overlay a:hover i {
+    transform: translateX(4px);
+}
+
+.all-projects-heading {
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
 .project-filters {
     display: flex;
     justify-content: center;
@@ -489,6 +603,160 @@ body {
 /* Experience Section */
 .project-card.hide {
     display: none;
+}
+
+/* Services Section */
+.services {
+    background: linear-gradient(180deg, #f7fbfe 0%, #ffffff 100%);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid rgba(35, 122, 175, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(24, 70, 98, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--primary-color);
+    box-shadow: 0 18px 45px rgba(24, 70, 98, 0.14);
+}
+
+.service-card.featured {
+    border: 2px solid var(--primary-color);
+}
+
+.service-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.35rem 0.75rem;
+    color: #fff;
+    background: var(--primary-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.service-icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 1.25rem;
+    color: var(--primary-color);
+    background: rgba(35, 122, 175, 0.1);
+    border-radius: 14px;
+    font-size: 1.35rem;
+}
+
+.service-card h3 {
+    min-height: 3.4rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+}
+
+.service-card > p {
+    margin-bottom: 1.25rem;
+    color: #536472;
+    line-height: 1.7;
+}
+
+.service-features {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.service-features li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: #354754;
+}
+
+.service-features li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: #1ba85b;
+    font-weight: 700;
+}
+
+.service-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e8eef2;
+}
+
+.service-price span {
+    color: #687985;
+    font-size: 0.9rem;
+}
+
+.service-price strong {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+.service-price > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+}
+
+.service-price del {
+    color: #8a98a2;
+    font-size: 1rem;
+}
+
+.service-price small {
+    padding: 0.25rem 0.5rem;
+    color: #116c38;
+    background: #dff7e9;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.whatsapp-service-btn,
+.whatsapp-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+    color: #fff;
+    background: #1fa855;
+    border: 2px solid #1fa855;
+}
+
+.whatsapp-service-btn:hover,
+.whatsapp-contact-btn:hover {
+    color: #fff;
+    background: #168747;
+    border-color: #168747;
 }
 
 /* Pagination Styles */
@@ -850,8 +1118,56 @@ button[type="submit"]:disabled {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
     gap: 2rem;
-    width: 80%;
+    width: 100%;
     margin: auto;
+    margin-bottom: 2rem;
+}
+
+.contact-whatsapp-panel {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid rgba(35, 122, 175, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(24, 70, 98, 0.1);
+}
+
+.contact-whatsapp-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    color: #fff;
+    background: #1fa855;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.contact-whatsapp-panel .eyebrow {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.contact-whatsapp-panel h3 {
+    margin: 0.25rem 0 0.35rem;
+    font-size: 1.4rem;
+}
+
+.contact-whatsapp-panel p {
+    margin: 0;
+    color: #536472;
+}
+
+.contact-whatsapp-panel .whatsapp-contact-btn {
+    margin-top: 0;
+    white-space: nowrap;
 }
 
 .form-group {
@@ -859,6 +1175,47 @@ button[type="submit"]:disabled {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0.45rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-honeypot {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.form-status {
+    display: none;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.form-status.success,
+.form-status.error {
+    display: block;
+}
+
+.form-status.success {
+    color: #155724;
+    background: #dff4e5;
+    border: 1px solid #b7dfc2;
+}
+
+.form-status.error {
+    color: #842029;
+    background: #f8d7da;
+    border: 1px solid #f1aeb5;
 }
 
 .form-group input,
@@ -1121,6 +1478,10 @@ button[type="submit"]:disabled {
         flex: 1;
     }
 
+    .featured-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .timeline {
         flex-direction: column;
         align-items: flex-start;
@@ -1140,6 +1501,15 @@ button[type="submit"]:disabled {
         font-size: 1.7rem;
     }
     .contact-form {
+        width: 100%;
+    }
+
+    .contact-whatsapp-panel {
+        grid-template-columns: auto 1fr;
+    }
+
+    .contact-whatsapp-panel .whatsapp-contact-btn {
+        grid-column: 1 / -1;
         width: 100%;
     }
 }
@@ -1213,6 +1583,39 @@ section {
 
     .contact-info {
         grid-template-columns: 1fr;
+    }
+
+    .featured-projects-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .featured-projects-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 260px;
+    }
+
+    .featured-project-item.featured-primary {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .contact-whatsapp-panel {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .contact-whatsapp-icon {
+        margin: 0 auto;
     }
 
     .footer-content {

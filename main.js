@@ -240,37 +240,107 @@ document.addEventListener('DOMContentLoaded', () => {
   new ProjectsManager();
 });
 
-// Form Validation and Submission
-const contactForm = document.getElementById("contact-form");
+// CTA tracking for Google Tag Manager or direct GA4 installations.
+function trackPortfolioEvent(eventName, eventParameters = {}) {
+  const cleanParameters = Object.fromEntries(
+    Object.entries(eventParameters).filter(([, value]) => value !== undefined && value !== null && value !== "")
+  );
 
-contactForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...cleanParameters });
 
-  const formData = new FormData(contactForm);
-  const formProps = Object.fromEntries(formData);
+  // A direct GA4 setup may expose gtag without Google Tag Manager.
+  if (typeof window.gtag === "function" && !window.google_tag_manager) {
+    window.gtag("event", eventName, cleanParameters);
+  }
+}
 
-  // Basic validation
-  let isValid = true;
-  const email = formProps.email;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+document.addEventListener("click", (clickEvent) => {
+  const clickedLink = clickEvent.target.closest("a, button");
+  if (!clickedLink) return;
 
-  if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address");
-    isValid = false;
+  const explicitEvent = clickedLink.dataset.trackEvent;
+  if (explicitEvent) {
+    trackPortfolioEvent(explicitEvent, {
+      service_name: clickedLink.dataset.service,
+      project_name: clickedLink.dataset.project,
+      starting_price_usd: clickedLink.dataset.price ? Number(clickedLink.dataset.price) : undefined,
+      original_price_usd: clickedLink.dataset.originalPrice ? Number(clickedLink.dataset.originalPrice) : undefined,
+      contact_method: clickedLink.dataset.contactMethod,
+      link_url: clickedLink.href,
+      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
+    });
+    return;
   }
 
-  if (formProps.message.length < 10) {
-    alert("Message must be at least 10 characters long");
-    isValid = false;
+  const projectCard = clickedLink.closest(".project-card");
+  if (projectCard && clickedLink.matches("a.btn")) {
+    trackPortfolioEvent("project_view_click", {
+      project_name: projectCard.querySelector("h3")?.textContent.trim(),
+      link_url: clickedLink.href,
+      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
+    });
+    return;
   }
 
-  if (isValid) {
-    // Here you would typically send the form data to a server
-    // For now, we'll just show a success message
-    alert("Message sent successfully!");
-    contactForm.reset();
+  if (clickedLink.matches(".nav-links a[href^='#'], .hero .cta-buttons a")) {
+    trackPortfolioEvent("navigation_click", {
+      destination: clickedLink.getAttribute("href"),
+      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
+    });
   }
 });
+
+// Send contact inquiries to Formspree and only show success after the server confirms receipt.
+const contactForm = document.getElementById("contact-form");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (submitEvent) => {
+    submitEvent.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const buttonLabel = submitButton.querySelector("span");
+    const buttonIcon = submitButton.querySelector("i");
+    const formStatus = document.getElementById("form-status");
+
+    submitButton.disabled = true;
+    buttonLabel.textContent = "Sending...";
+    buttonIcon.className = "fas fa-spinner fa-spin";
+    formStatus.className = "form-status";
+    formStatus.textContent = "";
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
+
+      formStatus.className = "form-status success";
+      formStatus.textContent = "Thanks! Your message has been sent successfully.";
+      trackPortfolioEvent("contact_form_submit", { form_name: "portfolio_contact" });
+      contactForm.reset();
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      formStatus.className = "form-status error";
+      formStatus.textContent = "Your message could not be sent. Please try again or contact me on WhatsApp.";
+      trackPortfolioEvent("contact_form_error", { form_name: "portfolio_contact" });
+    } finally {
+      submitButton.disabled = false;
+      buttonLabel.textContent = submitButton.dataset.defaultLabel;
+      buttonIcon.className = "fas fa-paper-plane";
+    }
+  });
+}
 
 // Typing Animation for Hero Section
 const typingText = document.querySelector(".typing-text");
