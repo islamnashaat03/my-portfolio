@@ -1766,3 +1766,55 @@ button[type="submit"]:disabled {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+/* Mobile fix: keep the WhatsApp contact card and CTA inside the viewport */
+@media (max-width: 767px) {
+    #contact .container,
+    #contact .contact-form {
+        min-width: 0;
+    }
+
+    #contact .contact-form {
+        padding: 1.25rem;
+    }
+
+    #contact .contact-whatsapp-panel {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    #contact .contact-whatsapp-panel > * {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    #contact .contact-whatsapp-panel h3 {
+        font-size: clamp(1.6rem, 8vw, 2rem);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    #contact .contact-whatsapp-panel p {
+        font-size: 1rem;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    #contact .contact-whatsapp-panel .whatsapp-contact-btn {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0.95rem 0.75rem;
+        box-sizing: border-box;
+        white-space: normal;
+        text-align: center;
+        justify-content: center;
+    }
+}
