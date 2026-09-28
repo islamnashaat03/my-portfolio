@@ -249,8 +249,9 @@ function trackPortfolioEvent(eventName, eventParameters = {}) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: eventName, ...cleanParameters });
 
-  // A direct GA4 setup may expose gtag without Google Tag Manager.
-  if (typeof window.gtag === "function" && !window.google_tag_manager) {
+  // Send directly to GA4 unless a GTM container is installed later.
+  const hasGtmContainer = Boolean(document.querySelector('script[src*="gtm.js?id=GTM-"]'));
+  if (typeof window.gtag === "function" && !hasGtmContainer) {
     window.gtag("event", eventName, cleanParameters);
   }
 }
