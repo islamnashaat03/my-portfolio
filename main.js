@@ -332,6 +332,10 @@ if (contactForm) {
     formStatus.className = "form-status";
     formStatus.textContent = "";
 
+    const replyToField = contactForm.querySelector('input[name="_replyto"]');
+    const emailField = contactForm.querySelector('input[name="email"]');
+    if (replyToField && emailField) replyToField.value = emailField.value;
+
     try {
       const response = await fetch(contactForm.action, {
         method: "POST",
@@ -339,8 +343,13 @@ if (contactForm) {
         headers: { Accept: "application/json" },
       });
 
-      if (!response.ok) {
-        throw new Error(`Form submission failed with status ${response.status}`);
+      const responseData = await response.json().catch(() => ({}));
+
+      if (!response.ok || responseData.ok === false) {
+        const apiMessage = Array.isArray(responseData.errors)
+          ? responseData.errors.map((item) => item.message).filter(Boolean).join(" ")
+          : "";
+        throw new Error(apiMessage || `Form submission failed with status ${response.status}`);
       }
 
       formStatus.className = "form-status success";
@@ -350,7 +359,7 @@ if (contactForm) {
     } catch (error) {
       console.error("Contact form submission error:", error);
       formStatus.className = "form-status error";
-      formStatus.textContent = "Your message could not be sent. Please try again or contact me on WhatsApp.";
+      formStatus.textContent = "Your message could not be sent right now. Please use WhatsApp or try again shortly.";
       trackPortfolioEvent("contact_form_error", { form_name: "portfolio_contact" });
     } finally {
       submitButton.disabled = false;

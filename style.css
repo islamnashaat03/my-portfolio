@@ -287,7 +287,24 @@ body {
     margin-bottom: 2rem;
 }
 .section-subtitle{
-    margin-bottom: 20px;
+    max-width: 680px;
+    margin: -1.25rem auto 3rem;
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 1.7;
+    color: #5f6873;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 .about-content {
