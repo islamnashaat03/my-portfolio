@@ -22,6 +22,24 @@ a {
     color: inherit;
     text-decoration: none;
 }
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1000000000;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    color: #0a2047;
+    border: 2px solid #0a2047;
+    border-radius: 0.35rem;
+    transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+    outline: 3px solid #ffbf47;
+    outline-offset: 3px;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -182,6 +200,17 @@ body {
 
 .menu-btn {
     display: none;
+    border: 0;
+    background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* Hero Section */

@@ -23,6 +23,9 @@ const navLinks = document.querySelector(".nav-links");
 menuBtn.addEventListener("click", () => {
   menuBtn.classList.toggle("opened");
   navLinks.classList.toggle("show");
+  const isOpen = navLinks.classList.contains("show");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
   // if (nav.classList.contains("show")) {
   //   navLinks.style.display = "flex";
   // } else {
@@ -83,8 +86,12 @@ class ProjectsManager {
     // Filter buttons
     this.filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.filterBtns.forEach((b) => b.classList.remove("active"));
+        this.filterBtns.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
         btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
         
         this.currentFilter = btn.getAttribute("data-filter");
         this.currentPage = 1;
@@ -208,6 +215,8 @@ class ProjectsManager {
     const pageBtn = document.createElement('button');
     pageBtn.className = `pagination-number ${pageNum === this.currentPage ? 'active' : ''}`;
     pageBtn.textContent = pageNum;
+    pageBtn.setAttribute('aria-label', `Go to projects page ${pageNum}`);
+    if (pageNum === this.currentPage) pageBtn.setAttribute('aria-current', 'page');
     pageBtn.addEventListener('click', () => {
       this.currentPage = pageNum;
       this.renderProjects();
@@ -522,24 +531,18 @@ class ParticleCanvas {
 
 // Initialize canvas when the page loads
 window.addEventListener("load", () => {
-  new ParticleCanvas();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lowPowerDevice = window.matchMedia("(max-width: 767px)").matches;
+  if (!reduceMotion && !lowPowerDevice) new ParticleCanvas();
 });
 
 // Keep the branded preloader visible briefly without waiting for lazy-loaded images.
-const preloaderStartedAt = performance.now();
-
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.querySelector(".loader");
   if (!loader) return;
-
-  const minimumDisplayTime = 1400;
-  const remainingTime = Math.max(0, minimumDisplayTime - (performance.now() - preloaderStartedAt));
-
-  setTimeout(() => loader.classList.add("loader-hidden"), remainingTime);
+  loader.classList.add("loader-hidden");
   loader.addEventListener("transitionend", () => loader.remove(), { once: true });
-
-  // Failsafe for browsers that do not fire transitionend.
-  setTimeout(() => loader.remove(), remainingTime + 1000);
+  setTimeout(() => loader.remove(), 500);
 });
 
         // Select the scroll-to-top button and progress circle

@@ -36,8 +36,9 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- loader -->
-   <div class="loader">
+   <div class="loader" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" data-name="Layer 3" viewBox="0 0 915.06 939.57">
             <defs>
             </defs>
@@ -50,44 +51,45 @@
     </div>
     
     <!-- Scroll to top button with an embedded SVG circular progress bar -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <i class="fa-solid fa-arrow-up"></i>
-        <svg class="progress-circle" viewBox="0 0 100 100">
+    <button class="scroll-to-top" id="scrollToTop" type="button" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        <svg class="progress-circle" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <circle cx="50" cy="50" r="40" stroke="#fff" stroke-width="6" fill="none"></circle>
             <circle id="progress" cx="50" cy="50" r="40" stroke="#007bff" stroke-width="6" fill="none" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round"></circle>
         </svg>
     </button>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
         <div class="container">
             <div class="logo">
                 <img src="images/logo.svg" alt="Islam Nashaat">
             </div>
-            <div class="nav-links">
+            <div class="nav-links" id="primary-navigation">
                 <a href="#home" class="active">Home</a>
                 <a href="#about">About</a>
                 <a href="#featured-projects">Projects</a>
                 <a href="#services">Services</a>
                 <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
-                <a target="_blank"
+                <a target="_blank" rel="noopener noreferrer"
                     href="https://drive.google.com/file/d/1VbSpO68v5W0N2oH7vTZKXKbGif8K-CEG/view?usp=sharing"
                     class="btn primary resume-btn ">Download Resume</a>
             </div>
-            <div class="menu-btn">
+            <button class="menu-btn" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <a target="_blank" href="https://drive.google.com/file/d/1VbSpO68v5W0N2oH7vTZKXKbGif8K-CEG/view?usp=sharing"
+            </button>
+            <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1VbSpO68v5W0N2oH7vTZKXKbGif8K-CEG/view?usp=sharing"
                 class="btn primary resume-btn">Download Resume</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
+    <main id="main-content">
     <section id="home" class="hero">
         <div id="canvas-container"></div>
         <div class="container">
@@ -179,12 +181,12 @@
             <h2 class="section-title">Explore All Projects</h2>
             <p class="section-subtitle">Browse the complete project archive by development category</p>
             <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="wordpress">WordPress</button>
-                <button class="filter-btn" data-filter="plugin-development">Plugin Development</button>
-                <button class="filter-btn" data-filter="frontend">Frontend</button>
-                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-                <button class="filter-btn" data-filter="salla">Salla</button>
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="wordpress" aria-pressed="false">WordPress</button>
+                <button class="filter-btn" data-filter="plugin-development" aria-pressed="false">Plugin Development</button>
+                <button class="filter-btn" data-filter="frontend" aria-pressed="false">Frontend</button>
+                <button class="filter-btn" data-filter="ecommerce" aria-pressed="false">E-commerce</button>
+                <button class="filter-btn" data-filter="salla" aria-pressed="false">Salla</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
                 <!-- Islamnashaat Translation Toolkit -->
@@ -986,20 +988,21 @@ I have delivered multiple projects including marketplaces, corporate websites, a
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-social">
-                    <a href="https://github.com/islamnashaat03"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/islam-nashaat03/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/islamnashaat03" target="_blank" rel="noopener noreferrer" aria-label="Islam Nashaat on GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/islam-nashaat03/" target="_blank" rel="noopener noreferrer" aria-label="Islam Nashaat on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                 </div>
                 <p>&copy; 2024 Islam Nashaat. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
     
 </body>
 
