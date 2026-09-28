@@ -237,6 +237,14 @@ class ProjectsManager {
 
 // Initialize projects manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  const servicesSection = document.getElementById('services');
+  const projectsSection = document.getElementById('projects');
+
+  // Keep the full project archive after Featured Projects and Services.
+  if (servicesSection && projectsSection) {
+    servicesSection.insertAdjacentElement('afterend', projectsSection);
+  }
+
   new ProjectsManager();
 });
 

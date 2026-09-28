@@ -319,6 +319,10 @@ body {
     margin: 2.5rem 0 4rem;
 }
 
+.featured-projects .featured-projects-showcase {
+    margin-bottom: 0;
+}
+
 .featured-projects-heading,
 .all-projects-heading {
     display: flex;
