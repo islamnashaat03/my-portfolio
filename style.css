@@ -1827,3 +1827,6 @@ button[type="submit"]:disabled {
 
 /* Normalize inline SVG icon sizing */
 .icon{display:inline-block;width:1em;height:1em;vertical-align:-.125em;fill:currentColor;flex:0 0 auto}.icon path{fill:currentColor}.btn .icon,.project-link .icon,.service-cta .icon,.whatsapp-contact-btn .icon{width:1em;height:1em}.service-icon .icon{width:2rem;height:2rem}.contact-item .icon{width:2rem;height:2rem;margin-bottom:.5rem}.contact-whatsapp-icon .icon{width:2rem;height:2rem}.footer-social .icon{width:1.25rem;height:1.25rem}.scroll-to-top>.icon{width:1rem;height:1rem}.carousel-control .icon,.carousel-btn .icon{width:1rem;height:1rem}.icon-spin{animation:spin 1s linear infinite;transform-origin:center}
+
+/* Correct GitHub and scroll-to-top SVG rendering */
+.footer-social .icon-github,.social-links .icon-github{width:1.25rem;height:1.25rem;display:block}.scroll-to-top>.icon-arrow-up{position:absolute;left:50%;top:50%;width:1rem;height:1rem;transform:translate(-50%,-50%);margin:0;z-index:2}.scroll-to-top>.progress-circle{position:absolute;inset:0;width:100%;height:100%;z-index:1}
