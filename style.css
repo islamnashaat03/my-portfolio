@@ -1824,3 +1824,6 @@ button[type="submit"]:disabled {
         justify-content: center;
     }
 }
+
+/* Normalize inline SVG icon sizing */
+.icon{display:inline-block;width:1em;height:1em;vertical-align:-.125em;fill:currentColor;flex:0 0 auto}.icon path{fill:currentColor}.btn .icon,.project-link .icon,.service-cta .icon,.whatsapp-contact-btn .icon{width:1em;height:1em}.service-icon .icon{width:2rem;height:2rem}.contact-item .icon{width:2rem;height:2rem;margin-bottom:.5rem}.contact-whatsapp-icon .icon{width:2rem;height:2rem}.footer-social .icon{width:1.25rem;height:1.25rem}.scroll-to-top>.icon{width:1rem;height:1rem}.carousel-control .icon,.carousel-btn .icon{width:1rem;height:1rem}.icon-spin{animation:spin 1s linear infinite;transform-origin:center}
