@@ -323,12 +323,12 @@ if (contactForm) {
 
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const buttonLabel = submitButton.querySelector("span");
-    const buttonIcon = submitButton.querySelector("i");
+    const buttonIcon = submitButton.querySelector(".icon");
     const formStatus = document.getElementById("form-status");
 
     submitButton.disabled = true;
     buttonLabel.textContent = "Sending...";
-    buttonIcon.className = "fas fa-spinner fa-spin";
+    buttonIcon.classList.add("icon-spin");
     formStatus.className = "form-status";
     formStatus.textContent = "";
 
@@ -364,7 +364,7 @@ if (contactForm) {
     } finally {
       submitButton.disabled = false;
       buttonLabel.textContent = submitButton.dataset.defaultLabel;
-      buttonIcon.className = "fas fa-paper-plane";
+      buttonIcon.classList.remove("icon-spin");
     }
   });
 }
