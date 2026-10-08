@@ -4,8 +4,10 @@ const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 const activeMotion = new Set();
 function playEntrance(element, delay = 0) {
   if (motionPreference.matches || !element.animate) return;
+  // Text remains visible during mobile entry: never delay the initial paint.
+  const mobileHero = matchMedia('(max-width: 760px)').matches && element.closest('.hero');
   const animation = element.animate([
-    {opacity: 0, transform: 'translateY(14px)'},
+    {opacity: mobileHero ? 1 : 0, transform: 'translateY(14px)'},
     {opacity: 1, transform: 'translateY(0)'}
   ], {duration: 600, delay, easing: 'cubic-bezier(.16,1,.3,1)'});
   activeMotion.add(animation);
@@ -247,7 +249,7 @@ if (glassHeader && 'IntersectionObserver' in window) {
 
 // Final Matrix background: crisp glyphs everywhere, a few independently paced IN highlights.
 const matrixHero = document.querySelector('.home-page .hero');
-if (matrixHero) {
+if (matrixHero && matchMedia('(min-width: 761px)').matches && !motionPreference.matches) {
   const matrixCanvas = document.createElement('canvas');
   matrixCanvas.className='matrix-canvas';matrixCanvas.setAttribute('aria-hidden','true');
   matrixHero.prepend(matrixCanvas);
@@ -289,7 +291,7 @@ if (matrixHero) {
     }
     function sync(){
       cancelAnimationFrame(frame);last=performance.now();draw();
-      if(visible&&!document.hidden&&!motionPreference.matches)frame=requestAnimationFrame(tick);
+      if(visible&&!document.hidden&&!motionPreference.matches&&matchMedia('(min-width: 761px)').matches)frame=requestAnimationFrame(tick);
     }
     function resize(){
       width=matrixHero.clientWidth;height=matrixHero.clientHeight;

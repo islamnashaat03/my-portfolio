@@ -157,6 +157,7 @@ html{scroll-behavior:smooth;scrollbar-gutter:stable}
 .hero-main>.availability{font-size:14px}
 .hero-emblem>span{animation:none;transform:none}
 .matrix-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+@media(max-width:760px){.matrix-canvas{display:none}}
 .hero-content{z-index:1}.hero-main{text-shadow:0 2px 12px #111414}
 @media(max-width:760px){.hero-main>h1{font-size:clamp(44px,10vw,64px)}.hero-main>.hero-intro{font-size:17px}.home-page .hero::before{background-size:cover;background-repeat:no-repeat;opacity:.32}.hero-main>.availability{font-size:12px}}
 

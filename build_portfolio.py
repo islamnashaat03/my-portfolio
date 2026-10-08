@@ -1,3 +1,4 @@
+import re
 """Generate a bilingual, crawlable static portfolio. Run with Python 3."""
 from pathlib import Path
 import json, re, html, shutil, os
@@ -159,7 +160,10 @@ def build(lang):
     def write(path,body,title,active=''):
         p=out/path;p.parent.mkdir(parents=True,exist_ok=True)
         page=shell(body,title,path,active).replace('20261008-23','20261008-24')
-        page=footer_controls(page,('../' if ar else '')+'../'*path.count('/')+'files/Islam-Nashaat-CV.pdf',ar).replace('20261008-24','20261008-25')
+        page=footer_controls(page,('../' if ar else '')+'../'*path.count('/')+'files/Islam-Nashaat-CV.pdf',ar).replace('20261008-24','20261008-26')
+        font_css=(Path('fonts/fonts.css').read_text()).replace('url(', 'url('+('../' if ar else '')+'../'*path.count('/')+'fonts/')
+        inline_css=Path('portfolio.css').read_text().replace('url("images/', 'url("'+('../' if ar else '')+'../'*path.count('/')+'images/')
+        page=re.sub(r'<link rel="preconnect"[^>]+>|<link href="https://fonts.googleapis.com[^>]+>|<link rel="stylesheet" href="[^"]*portfolio.css[^>]+>', '', page).replace('</head>', '<style>'+font_css+inline_css+'</style></head>')
         if path=='review.html':page=page.replace('<head>','<head><meta name="robots" content="noindex,follow">',1)
         p.write_text(page,encoding='utf-8')
     home=f'''<section class="hero"><div class="hero-content wrap"><div class="hero-main"><h1>{'Islam Nashaat' if not ar else 'إسلام نشأت'}</h1><h2>{'Senior Web Developer' if not ar else 'مطوّر ويب بخبرة واسعة'}<span class="hero-specialty">{'WordPress & Frontend Expert' if not ar else 'خبير ووردبريس والواجهات الأمامية'}</span></h2><p class="hero-intro">{'I build reliable websites, WooCommerce and Salla stores, and custom WordPress solutions for businesses working in Arabic and English.' if not ar else 'أبني مواقع موثوقة ومتاجر ووكومرس وسلة وحلول ووردبريس مخصّصة للأنشطة التي تعمل بالعربية والإنجليزية.'}</p><div class="actions"><a class="button" href="#work">{'Explore my work' if not ar else 'اكتشف أعمالي'} <span aria-hidden="true">↗</span></a><a class="button secondary" href="{'../' if ar else ''}files/Islam-Nashaat-CV.pdf" download>{tr('cv')} <span aria-hidden="true">↓</span></a><a class="quote-link" href="services/index.html">{'Get a quote' if not ar else 'اطلب عرض سعر'} <span aria-hidden="true">↗</span></a></div><p class="availability">{tr('availability')}</p></div><div class="expertise">'''
