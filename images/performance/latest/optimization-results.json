@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-08",
+  "url": "https://islamnashaat03.github.io/my-portfolio/",
+  "before": {
+    "performance": 76,
+    "lcpSeconds": 4.7,
+    "report": "https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-my-portfolio/7p7xmq05vt?form_factor=mobile"
+  },
+  "after": {
+    "mobile": 100,
+    "desktop": 100,
+    "mobileLcpSeconds": 0.9,
+    "desktopLcpSeconds": 0.3,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "report": "https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-my-portfolio/0bbamicop0?form_factor=mobile"
+  },
+  "note": "Single Lighthouse lab run before and after; scores vary between runs."
+}

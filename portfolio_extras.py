@@ -37,6 +37,16 @@ def evidence(slug, ar=False, prefix='../'):
         cards+=f'<article><h3>{label} <strong dir="ltr">{score}/100</strong></h3><a href="{image}" target="_blank" rel="noopener"><img src="{image}" alt="{esc(item["name"])} — {label} PageSpeed report" width="1440" height="1400" loading="lazy"></a><a class="text-link" href="{esc(d["report"])}" target="_blank" rel="noopener">{"التقرير الأصلي" if ar else "Original report"}</a></article>'
     return f'<section class="wrap section performance-evidence"><h2>{title}</h2><p class="evidence-note">{note}</p><div class="evidence-grid">{cards}</div></section>'
 
+def portfolio_evidence(ar=False, prefix='../'):
+    t=lambda en,arab: arab if ar else en
+    report='https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-my-portfolio/0bbamicop0'
+    cards=''
+    for device in ('mobile','desktop'):
+        label=t('Mobile','الموبايل') if device=='mobile' else t('Desktop','الكمبيوتر')
+        image=f'{prefix}images/performance/latest/my-portfolio-{device}-optimized.jpg'
+        cards+=f'<article><h3>{label} <strong dir="ltr">100/100</strong></h3><a href="{image}" target="_blank" rel="noopener"><img src="{image}" alt="{label} — Islam Nashaat portfolio PageSpeed report" width="413" height="1800" loading="lazy"></a><a class="text-link" href="{report}?form_factor={device}" target="_blank" rel="noopener">{t("Original report","التقرير الأصلي")}</a></article>'
+    return f'<section class="wrap section performance-evidence"><h2>{t("My portfolio: measured performance improvement","البورتفليو الخاص بي: تحسين أداء بقياس موثّق")}</h2><p>{t("Mobile performance improved from 76 to 100, and Largest Contentful Paint from 4.7 to 0.9 seconds. I removed render-blocking font and CSS requests, compressed and self-hosted fonts, and replaced the mobile canvas with a static background. Desktop recorded 100/100.","تحسّن أداء الموبايل من 76 إلى 100، ووقت ظهور أكبر محتوى من 4.7 إلى 0.9 ثانية. أزلت طلبات الخطوط وCSS التي تؤخر الرسم، وضغطت الخطوط واستضفتها محليًا، واستبدلت الكانفاس على الموبايل بخلفية ثابتة. سجّل الكمبيوتر 100/100.")}</p><p class="evidence-note">{t("Lighthouse lab tests on 8 October 2026, on the same URL. Mobile: emulated Moto G Power / Slow 4G. Individual test results vary; these are not real-user measurements.","اختبارات Lighthouse بتاريخ 8 أكتوبر 2026 على نفس الرابط. الموبايل: محاكاة Moto G Power واتصال Slow 4G. تتغير النتائج بين التشغيلات، وهذه ليست قياسات مستخدمين فعلية.")}</p><a class="text-link" href="https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-my-portfolio/7p7xmq05vt?form_factor=mobile" target="_blank" rel="noopener">{t("Before optimization report","تقرير ما قبل التحسين")}</a><div class="evidence-grid">{cards}</div></section>'
+
 def review_page(ar=False):
     def t(en,arab): return arab if ar else en
     return f'''<section class="page-intro wrap review-intro"><h1>{t('How was working<br>with me?','كيف كانت تجربة<br>العمل معي؟')}</h1><p>{t('A short, honest review helps future clients understand what working together is like. Positive feedback and suggestions are both welcome.','تقييمك الصادق يساعد العملاء على فهم تجربة العمل معي. أرحّب بالملاحظات الإيجابية واقتراحات التحسين.')}</p><p class="muted">{t('About 3 minutes. Your review is checked before publication.','حوالي ٣ دقائق. تتم مراجعة التقييم قبل نشره.')}</p></section>
