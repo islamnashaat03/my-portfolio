@@ -1,0 +1,486 @@
+[
+  {
+    "name": "Legal Pillars Law",
+    "slug": "legal-pillars-law",
+    "url": "https://works.targetlines.com/3adaed/",
+    "report": "https://pagespeed.web.dev/analysis/https-works-targetlines-com-3adaed/rt4al13goh",
+    "capturedAt": "2026-10-08T00:29:14.373Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\legal-pillars-law-mobile.png",
+        "score": "93\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-works-targetlines-com-3adaed/rt4al13goh?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\legal-pillars-law-desktop.png",
+        "score": "97\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-works-targetlines-com-3adaed/rt4al13goh?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Islam Nashaat Portfolio",
+    "slug": "portfolio",
+    "url": "https://islamnashaat03.github.io/portfolio-v2/",
+    "report": "https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-portfolio-v2/nf9blb55mh",
+    "capturedAt": "2026-10-08T00:23:33.628Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\portfolio-mobile.png",
+        "score": "92\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-portfolio-v2/nf9blb55mh?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\portfolio-desktop.png",
+        "score": "100\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-islamnashaat03-github-io-portfolio-v2/nf9blb55mh?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "ESDF Egypt",
+    "slug": "esdf-egypt",
+    "url": "https://esdf-eg.com/home",
+    "report": "https://pagespeed.web.dev/analysis/https-esdf-eg-com-home/504kpj0vwu",
+    "capturedAt": "2026-10-08T00:29:05.640Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\esdf-egypt-mobile.png",
+        "score": "75\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-esdf-eg-com-home/504kpj0vwu?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\esdf-egypt-desktop.png",
+        "score": "91\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-esdf-eg-com-home/504kpj0vwu?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Menarat Ebdaa",
+    "slug": "menarat-ebdaa",
+    "url": "https://mnarat-ebdaa.com/",
+    "report": "https://pagespeed.web.dev/analysis/https-mnarat-ebdaa-com/2y44khlmes",
+    "capturedAt": "2026-10-08T00:29:16.718Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\menarat-ebdaa-mobile.png",
+        "score": "75\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-mnarat-ebdaa-com/2y44khlmes?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\menarat-ebdaa-desktop.png",
+        "score": "76\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-mnarat-ebdaa-com/2y44khlmes?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "UN-IDU",
+    "slug": "un-idu",
+    "url": "https://un-idu.org/",
+    "report": "https://pagespeed.web.dev/analysis/https-un-idu-org/gjk5nnxj2t",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:31:09.149Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\un-idu-mobile.png",
+        "score": "71\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-un-idu-org/gjk5nnxj2t?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\un-idu-desktop.png",
+        "score": "91\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-un-idu-org/gjk5nnxj2t?form_factor=desktop"
+      }
+    ]
+  },
+  {
+    "name": "Blackfox",
+    "slug": "blackfox",
+    "url": "https://blackfoxsolutions.co",
+    "report": "https://pagespeed.web.dev/analysis/https-blackfoxsolutions-co/n0511lgd8p",
+    "capturedAt": "2026-10-08T00:28:53.142Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\blackfox-mobile.png",
+        "score": "70\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-blackfoxsolutions-co/n0511lgd8p?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\blackfox-desktop.png",
+        "score": "92\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-blackfoxsolutions-co/n0511lgd8p?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Flzat",
+    "slug": "flzat",
+    "url": "https://wordpress.aait-sa.com/flzat/",
+    "report": "https://pagespeed.web.dev/analysis/https-wordpress-aait-sa-com-flzat/o49e30wu0z",
+    "capturedAt": "2026-10-08T00:29:06.769Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\flzat-mobile.png",
+        "score": "70\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-wordpress-aait-sa-com-flzat/o49e30wu0z?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\flzat-desktop.png",
+        "score": "90\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-wordpress-aait-sa-com-flzat/o49e30wu0z?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "New Concept",
+    "slug": "new-concept",
+    "url": "https://newconceptsa.com/",
+    "report": "https://pagespeed.web.dev/analysis/https-newconceptsa-com/4bpic353g1",
+    "capturedAt": "2026-10-08T00:28:48.957Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\new-concept-mobile.png",
+        "score": "68\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-newconceptsa-com/4bpic353g1?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\new-concept-desktop.png",
+        "score": "90\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-newconceptsa-com/4bpic353g1?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "DefEYE",
+    "slug": "defeye",
+    "url": "https://defeye.com/persistent-epithelial-defects/",
+    "report": "https://pagespeed.web.dev/analysis/https-defeye-com-persistent-epithelial-defects/uzoc5d9alu",
+    "capturedAt": "2026-10-08T00:28:57.278Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\defeye-mobile.png",
+        "score": "64\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-defeye-com-persistent-epithelial-defects/uzoc5d9alu?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\defeye-desktop.png",
+        "score": "97\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-defeye-com-persistent-epithelial-defects/uzoc5d9alu?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Blood Bank SPA",
+    "slug": "blood-bank-spa",
+    "url": "https://blood-bank-vue.netlify.app",
+    "report": "https://pagespeed.web.dev/analysis/https-blood-bank-vue-netlify-app/l480ndoxl5",
+    "capturedAt": "2026-10-08T00:28:53.556Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\blood-bank-spa-mobile.png",
+        "score": "64\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-blood-bank-vue-netlify-app/l480ndoxl5?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\blood-bank-spa-desktop.png",
+        "score": "94\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-blood-bank-vue-netlify-app/l480ndoxl5?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Enjaz Lines",
+    "slug": "enjaz-lines",
+    "url": "http://enjaz-lines.net",
+    "report": "https://pagespeed.web.dev/analysis/http-enjaz-lines-net/aclk21y6th",
+    "capturedAt": "2026-10-08T00:29:02.238Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\enjaz-lines-mobile.png",
+        "score": "64\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/http-enjaz-lines-net/aclk21y6th?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\enjaz-lines-desktop.png",
+        "score": "93\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/http-enjaz-lines-net/aclk21y6th?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Dr. Elias Filimban",
+    "slug": "dr-elias-filimban",
+    "url": "https://eliasin.com",
+    "report": "https://pagespeed.web.dev/analysis/https-eliasin-com/ywsttp8c7l",
+    "capturedAt": "2026-10-08T00:29:01.727Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\dr-elias-filimban-mobile.png",
+        "score": "62\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-eliasin-com/ywsttp8c7l?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\dr-elias-filimban-desktop.png",
+        "score": "73\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-eliasin-com/ywsttp8c7l?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "SpyGlass Pharma",
+    "slug": "spyglass-pharma",
+    "url": "https://spyglasspharma.com/our-technology/",
+    "report": "https://pagespeed.web.dev/analysis/https-spyglasspharma-com-our-technology/k6xsim3235",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:32:33.460Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\spyglass-pharma-mobile.png",
+        "score": "61\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-spyglasspharma-com-our-technology/k6xsim3235?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\spyglass-pharma-desktop.png",
+        "score": "94\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-spyglasspharma-com-our-technology/k6xsim3235?form_factor=desktop"
+      }
+    ]
+  },
+  {
+    "name": "CIS Sudan",
+    "slug": "cis-sudan",
+    "url": "https://cis-sud.com",
+    "report": "https://pagespeed.web.dev/analysis/https-cis-sud-com/xl0jwm26mt",
+    "capturedAt": "2026-10-08T00:28:56.997Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\cis-sudan-mobile.png",
+        "score": "61\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-cis-sud-com/xl0jwm26mt?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\cis-sudan-desktop.png",
+        "score": "85\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-cis-sud-com/xl0jwm26mt?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Mulzam Law Firm",
+    "slug": "mulzam-law-firm",
+    "url": "https://mulzm-lawfirm.com.sa",
+    "report": "https://pagespeed.web.dev/analysis/https-mulzm-lawfirm-com-sa/ckjouls1jx",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:31:00.769Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\mulzam-law-firm-mobile.png",
+        "score": "60\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-mulzm-lawfirm-com-sa/ckjouls1jx?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\mulzam-law-firm-desktop.png",
+        "score": "77\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-mulzm-lawfirm-com-sa/ckjouls1jx?form_factor=desktop"
+      }
+    ]
+  },
+  {
+    "name": "Alpha Food Machinery",
+    "slug": "alpha-food-machinery",
+    "url": "https://alphafood-machine.com/",
+    "report": "https://pagespeed.web.dev/analysis/https-alphafood-machine-com/1qczdrn1tl",
+    "capturedAt": "2026-10-08T00:28:48.998Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\alpha-food-machinery-mobile.png",
+        "score": "59\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-alphafood-machine-com/1qczdrn1tl?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\alpha-food-machinery-desktop.png",
+        "score": "86\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-alphafood-machine-com/1qczdrn1tl?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Tenpoint Therapeutics",
+    "slug": "tenpoint-therapeutics",
+    "url": "https://tenpointtherapeutics.com/presbyopia/",
+    "report": "https://pagespeed.web.dev/analysis/https-tenpointtherapeutics-com-presbyopia/gbo0p7klf7",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:31:04.870Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\tenpoint-therapeutics-mobile.png",
+        "score": "57\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-tenpointtherapeutics-com-presbyopia/gbo0p7klf7?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\tenpoint-therapeutics-desktop.png",
+        "score": "85\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-tenpointtherapeutics-com-presbyopia/gbo0p7klf7?form_factor=desktop"
+      }
+    ]
+  },
+  {
+    "name": "Tatweej",
+    "slug": "tatweej",
+    "url": "https://tatweej.net",
+    "report": "https://pagespeed.web.dev/analysis/https-tatweej-net/7dtpgvs2l8",
+    "capturedAt": "2026-10-08T00:29:33.362Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\tatweej-mobile.png",
+        "score": "57\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-tatweej-net/7dtpgvs2l8?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\tatweej-desktop.png",
+        "score": "82\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-tatweej-net/7dtpgvs2l8?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Golden Knights",
+    "slug": "golden-knights",
+    "url": "https://goolden-knights.com",
+    "report": "https://pagespeed.web.dev/analysis/https-goolden-knights-com/4pmazlnzw7",
+    "capturedAt": "2026-10-08T00:29:10.009Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\golden-knights-mobile.png",
+        "score": "57\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-goolden-knights-com/4pmazlnzw7?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\golden-knights-desktop.png",
+        "score": "80\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-goolden-knights-com/4pmazlnzw7?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "The Fitnest",
+    "slug": "the-fitnest",
+    "url": "https://thefitnest-sa.com",
+    "report": "https://pagespeed.web.dev/analysis/https-thefitnest-sa-com/7t9f6o7e98",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:31:05.083Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\the-fitnest-mobile.png",
+        "score": "56\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-thefitnest-sa-com/7t9f6o7e98?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\the-fitnest-desktop.png",
+        "score": "64\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-thefitnest-sa-com/7t9f6o7e98?form_factor=desktop"
+      }
+    ]
+  },
+  {
+    "name": "Muhak Store",
+    "slug": "muhak-store",
+    "url": "https://muhakstore.com",
+    "report": "https://pagespeed.web.dev/analysis/https-muhakstore-com/uigae8d0z4",
+    "capturedAt": "2026-10-08T00:29:19.209Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\muhak-store-mobile.png",
+        "score": "54\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-muhakstore-com/uigae8d0z4?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\muhak-store-desktop.png",
+        "score": "75\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-muhakstore-com/uigae8d0z4?form_factor=desktop"
+      }
+    ],
+    "status": "captured"
+  },
+  {
+    "name": "Najd Club",
+    "slug": "najd-club",
+    "url": "https://najdclub.sa",
+    "report": "https://pagespeed.web.dev/analysis/https-najdclub-sa/jjtfceiqeo",
+    "status": "captured",
+    "capturedAt": "2026-10-08T00:31:00.783Z",
+    "devices": [
+      {
+        "device": "Mobile",
+        "screenshot": "images\\performance\\current\\najd-club-mobile.png",
+        "score": "51\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-najdclub-sa/jjtfceiqeo?form_factor=mobile"
+      },
+      {
+        "device": "Desktop",
+        "screenshot": "images\\performance\\current\\najd-club-desktop.png",
+        "score": "82\nPerformance",
+        "report": "https://pagespeed.web.dev/analysis/https-najdclub-sa/jjtfceiqeo?form_factor=desktop"
+      }
+    ]
+  }
+]

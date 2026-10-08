@@ -1,584 +1,304 @@
-// Show Mobile Menu
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document
-      .querySelector(this.getAttribute("href"))
-      .scrollIntoView({ behavior: "smooth" });
-
-    // Close mobile menu if open
-    if (nav.classList.contains("show")) {
-      nav.classList.remove("show");
-    }
-  });
-});
-
-// Mobile Menu Functionality
-const menuBtn = document.querySelector(".menu-btn");
-const nav = document.querySelector(".nav");
-const navLinks = document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click", () => {
-  menuBtn.classList.toggle("opened");
-  navLinks.classList.toggle("show");
-  const isOpen = navLinks.classList.contains("show");
-  menuBtn.setAttribute("aria-expanded", String(isOpen));
-  menuBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
-  // if (nav.classList.contains("show")) {
-  //   navLinks.style.display = "flex";
-  // } else {
-  //   setTimeout(() => {
-  //     navLinks.style.display = "none";
-  //   }, 200);
-  // }
-});
-
-// Active Navigation Link Highlight
-const sections = document.querySelectorAll("section");
-const navItems = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (scrollY >= sectionTop - sectionHeight / 3) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navItems.forEach((item) => {
-    item.classList.remove("active");
-    if (item.getAttribute("href").slice(1) === current) {
-      item.classList.add("active");
-    }
-  });
-});
-
-// Projects Filter and Pagination
-class ProjectsManager {
-  constructor() {
-    this.projectsPerPage = 9;
-    this.currentPage = 1;
-    this.currentFilter = 'all';
-    this.allProjects = Array.from(document.querySelectorAll('.project-card:not([data-project-hidden="true"])'));
-    this.filteredProjects = [...this.allProjects];
-    
-    this.filterBtns = document.querySelectorAll(".filter-btn");
-    this.projectsGrid = document.getElementById("projectsGrid");
-    this.paginationInfo = document.getElementById("paginationInfo");
-    this.paginationNumbers = document.getElementById("paginationNumbers");
-    this.prevBtn = document.getElementById("prevPage");
-    this.nextBtn = document.getElementById("nextPage");
-    
-    this.init();
-  }
-  
-  init() {
-    this.setupEventListeners();
-    this.renderProjects();
-    this.updatePagination();
-  }
-  
-  setupEventListeners() {
-    // Filter buttons
-    this.filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        this.filterBtns.forEach((b) => {
-          b.classList.remove("active");
-          b.setAttribute("aria-pressed", "false");
-        });
-        btn.classList.add("active");
-        btn.setAttribute("aria-pressed", "true");
-        
-        this.currentFilter = btn.getAttribute("data-filter");
-        this.currentPage = 1;
-        this.filterProjects();
-        this.renderProjects();
-        this.updatePagination();
-      });
-    });
-    
-    // Pagination buttons
-    this.prevBtn.addEventListener("click", () => {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-        this.renderProjects();
-        this.updatePagination();
-        this.scrollToProjectsSection();
-      }
-    });
-    
-    this.nextBtn.addEventListener("click", () => {
-      const totalPages = Math.ceil(this.filteredProjects.length / this.projectsPerPage);
-      if (this.currentPage < totalPages) {
-        this.currentPage++;
-        this.renderProjects();
-        this.updatePagination();
-        this.scrollToProjectsSection();
-      }
-    });
-  }
-  
-  filterProjects() {
-    if (this.currentFilter === 'all') {
-      this.filteredProjects = [...this.allProjects];
-    } else {
-      this.filteredProjects = this.allProjects.filter(card => 
-        card.getAttribute("data-category").includes(this.currentFilter)
-      );
-    }
-  }
-  
-  renderProjects() {
-    const startIndex = (this.currentPage - 1) * this.projectsPerPage;
-    const endIndex = startIndex + this.projectsPerPage;
-    const projectsToShow = this.filteredProjects.slice(startIndex, endIndex);
-    
-    // Hide all projects first
-    this.allProjects.forEach(card => {
-      card.style.display = "none";
-      card.style.opacity = "0";
-      card.style.transform = "scale(0.8)";
-    });
-    
-    // Show filtered projects with animation
-    setTimeout(() => {
-      projectsToShow.forEach((card, index) => {
-        card.style.display = "flex";
-        setTimeout(() => {
-          card.style.opacity = "1";
-          card.style.transform = "scale(1)";
-        }, index * 50);
-      });
-    }, 300);
-  }
-  
-  updatePagination() {
-    const totalProjects = this.filteredProjects.length;
-    const totalPages = Math.ceil(totalProjects / this.projectsPerPage);
-    const startProject = (this.currentPage - 1) * this.projectsPerPage + 1;
-    const endProject = Math.min(this.currentPage * this.projectsPerPage, totalProjects);
-    
-    // Update pagination info
-    this.paginationInfo.textContent = `Showing ${startProject}-${endProject} of ${totalProjects} projects`;
-    
-    // Update navigation buttons
-    this.prevBtn.disabled = this.currentPage === 1;
-    this.nextBtn.disabled = this.currentPage === totalPages;
-    
-    // Generate page numbers
-    this.generatePageNumbers(totalPages);
-  }
-  
-  generatePageNumbers(totalPages) {
-    this.paginationNumbers.innerHTML = '';
-    
-    if (totalPages <= 1) {
-      return;
-    }
-    
-    const maxVisiblePages = 5;
-    let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
-    // Adjust start page if we're near the end
-    if (endPage - startPage < maxVisiblePages - 1) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-    
-    // Add first page and ellipsis if needed
-    if (startPage > 1) {
-      this.addPageNumber(1);
-      if (startPage > 2) {
-        this.addEllipsis();
-      }
-    }
-    
-    // Add visible page numbers
-    for (let i = startPage; i <= endPage; i++) {
-      this.addPageNumber(i);
-    }
-    
-    // Add last page and ellipsis if needed
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        this.addEllipsis();
-      }
-      this.addPageNumber(totalPages);
-    }
-  }
-  
-  addPageNumber(pageNum) {
-    const pageBtn = document.createElement('button');
-    pageBtn.className = `pagination-number ${pageNum === this.currentPage ? 'active' : ''}`;
-    pageBtn.textContent = pageNum;
-    pageBtn.setAttribute('aria-label', `Go to projects page ${pageNum}`);
-    if (pageNum === this.currentPage) pageBtn.setAttribute('aria-current', 'page');
-    pageBtn.addEventListener('click', () => {
-      this.currentPage = pageNum;
-      this.renderProjects();
-      this.updatePagination();
-      this.scrollToProjectsSection();
-    });
-    this.paginationNumbers.appendChild(pageBtn);
-  }
-  
-  scrollToProjectsSection() {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    }
-  }
-  
-  addEllipsis() {
-    const ellipsis = document.createElement('span');
-    ellipsis.className = 'pagination-number ellipsis';
-    ellipsis.textContent = '...';
-    this.paginationNumbers.appendChild(ellipsis);
-  }
+'use strict';
+// One-shot motion leaves content visible if scripting or animation fails.
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+const activeMotion = new Set();
+function playEntrance(element, delay = 0) {
+  if (motionPreference.matches || !element.animate) return;
+  const animation = element.animate([
+    {opacity: 0, transform: 'translateY(14px)'},
+    {opacity: 1, transform: 'translateY(0)'}
+  ], {duration: 600, delay, easing: 'cubic-bezier(.16,1,.3,1)'});
+  activeMotion.add(animation);
+  animation.finished.then(() => activeMotion.delete(animation)).catch(() => activeMotion.delete(animation));
 }
-
-// Initialize projects manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const servicesSection = document.getElementById('services');
-  const projectsSection = document.getElementById('projects');
-
-  // Keep the full project archive after Featured Projects and Services.
-  if (servicesSection && projectsSection) {
-    servicesSection.insertAdjacentElement('afterend', projectsSection);
-  }
-
-  new ProjectsManager();
-});
-
-// CTA tracking for Google Tag Manager or direct GA4 installations.
-function trackPortfolioEvent(eventName, eventParameters = {}) {
-  const cleanParameters = Object.fromEntries(
-    Object.entries(eventParameters).filter(([, value]) => value !== undefined && value !== null && value !== "")
-  );
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...cleanParameters });
-
-  // Send directly to GA4 unless a GTM container is installed later.
-  const hasGtmContainer = Boolean(document.querySelector('script[src*="gtm.js?id=GTM-"]'));
-  if (typeof window.gtag === "function" && !hasGtmContainer) {
-    window.gtag("event", eventName, cleanParameters);
-  }
-}
-
-document.addEventListener("click", (clickEvent) => {
-  const clickedLink = clickEvent.target.closest("a, button");
-  if (!clickedLink) return;
-
-  const explicitEvent = clickedLink.dataset.trackEvent;
-  if (explicitEvent) {
-    trackPortfolioEvent(explicitEvent, {
-      service_name: clickedLink.dataset.service,
-      project_name: clickedLink.dataset.project,
-      starting_price_usd: clickedLink.dataset.price ? Number(clickedLink.dataset.price) : undefined,
-      original_price_usd: clickedLink.dataset.originalPrice ? Number(clickedLink.dataset.originalPrice) : undefined,
-      contact_method: clickedLink.dataset.contactMethod,
-      link_url: clickedLink.href,
-      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
-    });
-    return;
-  }
-
-  const projectCard = clickedLink.closest(".project-card");
-  if (projectCard && clickedLink.matches("a.btn")) {
-    trackPortfolioEvent("project_view_click", {
-      project_name: projectCard.querySelector("h3")?.textContent.trim(),
-      link_url: clickedLink.href,
-      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
-    });
-    return;
-  }
-
-  if (clickedLink.matches(".nav-links a[href^='#'], .hero .cta-buttons a")) {
-    trackPortfolioEvent("navigation_click", {
-      destination: clickedLink.getAttribute("href"),
-      link_text: clickedLink.textContent.trim().replace(/\s+/g, " "),
-    });
-  }
-});
-
-// Send contact inquiries to Formspree and only show success after the server confirms receipt.
-const contactForm = document.getElementById("contact-form");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", async (submitEvent) => {
-    submitEvent.preventDefault();
-
-    if (!contactForm.checkValidity()) {
-      contactForm.reportValidity();
-      return;
-    }
-
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const buttonLabel = submitButton.querySelector("span");
-    const buttonIcon = submitButton.querySelector(".icon");
-    const formStatus = document.getElementById("form-status");
-
-    submitButton.disabled = true;
-    buttonLabel.textContent = "Sending...";
-    buttonIcon.classList.add("icon-spin");
-    formStatus.className = "form-status";
-    formStatus.textContent = "";
-
-    const replyToField = contactForm.querySelector('input[name="_replyto"]');
-    const emailField = contactForm.querySelector('input[name="email"]');
-    if (replyToField && emailField) replyToField.value = emailField.value;
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: new FormData(contactForm),
-        headers: { Accept: "application/json" },
-      });
-
-      const responseData = await response.json().catch(() => ({}));
-
-      if (!response.ok || responseData.ok === false) {
-        const apiMessage = Array.isArray(responseData.errors)
-          ? responseData.errors.map((item) => item.message).filter(Boolean).join(" ")
-          : "";
-        throw new Error(apiMessage || `Form submission failed with status ${response.status}`);
+document.querySelectorAll('.hero-emblem, .hero-main > h1, .hero-main > h2, .hero-intro, .hero-main > .actions, .hero-main > .availability, .hero-stats').forEach((element, index) => playEntrance(element, index * 100));
+if ('IntersectionObserver' in window) {
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        playEntrance(entry.target);
+        reveal.unobserve(entry.target);
       }
-
-      formStatus.className = "form-status success";
-      formStatus.textContent = "Thanks! Your message has been sent successfully.";
-      trackPortfolioEvent("contact_form_submit", { form_name: "portfolio_contact" });
-      contactForm.reset();
-    } catch (error) {
-      console.error("Contact form submission error:", error);
-      formStatus.className = "form-status error";
-      formStatus.textContent = "Your message could not be sent right now. Please use WhatsApp or try again shortly.";
-      trackPortfolioEvent("contact_form_error", { form_name: "portfolio_contact" });
-    } finally {
-      submitButton.disabled = false;
-      buttonLabel.textContent = submitButton.dataset.defaultLabel;
-      buttonIcon.classList.remove("icon-spin");
-    }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.project, .service-card').forEach(element => reveal.observe(element));
+}
+motionPreference.addEventListener('change', () => {
+  if (motionPreference.matches) activeMotion.forEach(animation => animation.cancel());
+});
+if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.project, .service-card').forEach(element => {
+    let frame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    element.addEventListener('pointermove', event => {
+      if (motionPreference.matches) return;
+      const rect = element.getBoundingClientRect();
+      pointerX = event.clientX - rect.left;
+      pointerY = event.clientY - rect.top;
+      if (!frame) frame = requestAnimationFrame(() => {
+        element.style.setProperty('--glow-x', `${pointerX}px`);
+        element.style.setProperty('--glow-y', `${pointerY}px`);
+        frame = 0;
+      });
+    });
+    element.addEventListener('pointerleave', () => {cancelAnimationFrame(frame); frame = 0;});
   });
 }
-
-// Typing Animation for Hero Section
-const typingText = document.querySelector(".typing-text");
-const phrases = [
-  "I build amazing web experiences",
-  "I create responsive designs",
-  "I develop WordPress solutions",
-];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeEffect() {
-  const currentPhrase = phrases[phraseIndex];
-
-  if (isDeleting) {
-    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-    charIndex--;
+const arabic = document.documentElement.lang === 'ar';
+const serviceTabs = [...document.querySelectorAll('[data-service-tab]')];
+const serviceResults = document.querySelector('#service-results');
+function selectServiceTab(category, navigate = false, focus = false) {
+  const selected = serviceTabs.find(tab => tab.dataset.serviceTab === category) || serviceTabs[0];
+  if (!selected) return;
+  category = selected.dataset.serviceTab;
+  let count = 0;
+  serviceResults.querySelectorAll('[data-service-group]').forEach(card => {
+    card.hidden = category !== 'all' && card.dataset.serviceGroup !== category;
+    if (!card.hidden) count++;
+  });
+  serviceTabs.forEach(tab => {
+    const active = tab === selected;
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
+  serviceResults.setAttribute('aria-labelledby', selected.id);
+  document.querySelector('#service-count').textContent = arabic ? `${count} خدمة` : `${count} services`;
+  if (navigate) history.pushState(null, '', category === 'all' ? location.pathname + location.search : '#' + category);
+  document.querySelector('a.language').hash = category === 'all' ? '' : category;
+  if (focus) selected.focus({preventScroll: true});
+  const strip = selected.parentElement;
+  const bounds = strip.getBoundingClientRect();
+  const tabBounds = selected.getBoundingClientRect();
+  const offset = tabBounds.left < bounds.left ? tabBounds.left - bounds.left : tabBounds.right > bounds.right ? tabBounds.right - bounds.right : 0;
+  strip.scrollBy({left: offset, behavior: 'instant'});
+}
+serviceTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectServiceTab(tab.dataset.serviceTab, true));
+  tab.addEventListener('keydown', event => {
+    let next;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = serviceTabs.length - 1;
+    if (event.key === 'ArrowRight') next = (index + (arabic ? -1 : 1) + serviceTabs.length) % serviceTabs.length;
+    if (event.key === 'ArrowLeft') next = (index + (arabic ? 1 : -1) + serviceTabs.length) % serviceTabs.length;
+    if (next === undefined) return;
+    event.preventDefault();
+    selectServiceTab(serviceTabs[next].dataset.serviceTab, true, true);
+  });
+});
+if (serviceTabs.length) {
+  const syncServiceTab = () => selectServiceTab(location.hash.slice(1));
+  syncServiceTab();
+  window.addEventListener('popstate', syncServiceTab);
+  window.addEventListener('hashchange', syncServiceTab);
+}
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('#navigation');
+const mobileNavigation = matchMedia('(max-width: 760px)');
+const menuBackground = [...document.querySelectorAll('main, footer, .whatsapp, .site-header')];
+const headerInner = document.querySelector('.header-inner');
+const menuOverlay = document.createElement('div');
+menuOverlay.className = 'mobile-menu-panel';
+menuOverlay.id = 'mobile-menu-panel';
+menuOverlay.setAttribute('role','dialog');
+menuOverlay.setAttribute('aria-modal','true');
+menuOverlay.setAttribute('aria-label',arabic?'القائمة الرئيسية':'Main navigation');
+menuOverlay.inert = true;
+const menuTop = document.createElement('div');
+menuTop.className = 'mobile-menu-top';
+const menuBrand = document.querySelector('.site-header .brand')?.cloneNode(true);
+if(menuBrand) menuTop.append(menuBrand);
+const menuClose = document.createElement('button');
+menuClose.className='menu-close';
+menuClose.innerHTML=`${arabic?'إغلاق':'Close'} <span class="close-icon" aria-hidden="true"></span>`;
+menuTop.append(menuClose);menuOverlay.append(menuTop);
+const menuQuote = document.createElement('a');
+menuQuote.className = 'button mobile-menu-quote';
+menuQuote.href = document.querySelector('.site-header a[href$="services/index.html"]')?.href || 'services/index.html';
+menuQuote.textContent = arabic ? 'اطلب عرض سعر' : 'Get a quote';
+menuOverlay.append(menuQuote);document.body.append(menuOverlay);
+let menuSequence=0;
+let menuCleanup;
+function setMenu(open, restoreFocus=false) {
+  if(!toggle||!nav)return;
+  open = open && mobileNavigation.matches;
+  ++menuSequence;clearTimeout(menuCleanup);
+  toggle.setAttribute('aria-expanded',String(open));
+  menuOverlay.classList.toggle('is-open',open);
+  menuOverlay.inert=!open;
+  if(open) {
+    document.body.classList.add('menu-is-open');
+    menuBackground.forEach(el=>el.inert=true);
+    menuClose.focus({preventScroll:true});
   } else {
-    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-    charIndex++;
-  }
-
-  if (!isDeleting && charIndex === currentPhrase.length) {
-    isDeleting = true;
-    setTimeout(typeEffect, 200);
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    setTimeout(typeEffect, 500);
-  } else {
-    setTimeout(typeEffect, isDeleting ? 100 : 200);
+    // Keep the page still while the panel quietly fades out.
+    menuCleanup=setTimeout(()=>{
+      document.body.classList.remove('menu-is-open');
+      menuBackground.forEach(el=>el.inert=false);
+      if(restoreFocus)toggle.focus({preventScroll:true});
+    },motionPreference.matches?0:320);
   }
 }
-
-// Start typing animation
-typeEffect();
-
-// Canvas Animation
-class ParticleCanvas {
-  constructor() {
-    this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d");
-    this.particles = [];
-    this.mousePosition = {
-      x: null,
-      y: null,
-      radius: 150,
-    };
-
-    this.init();
+function placeNavigation(){
+  setMenu(false);
+  if(mobileNavigation.matches){menuOverlay.insertBefore(nav,menuQuote);toggle.setAttribute('aria-controls','mobile-menu-panel');}
+  else{headerInner.append(nav);toggle.setAttribute('aria-controls','navigation');}
+}
+toggle?.addEventListener('click',()=>setMenu(true));
+menuClose.addEventListener('click',()=>setMenu(false,true));
+nav?.addEventListener('click',event=>{
+  const link=event.target.closest('a');
+  if(!link||!mobileNavigation.matches)return;
+  const destination=new URL(link.href);
+  if(destination.pathname===location.pathname && destination.hash){
+    event.preventDefault();setMenu(false);
+    setTimeout(()=>{
+      history.pushState(null,'',destination.hash);
+      document.querySelector(destination.hash)?.scrollIntoView({behavior:motionPreference.matches?'instant':'smooth'});
+    },motionPreference.matches?0:330);
+  }else setMenu(false);
+});
+mobileNavigation.addEventListener('change',placeNavigation);
+placeNavigation();
+document.addEventListener('keydown',event=>{
+  if(!menuOverlay.classList.contains('is-open'))return;
+  if(event.key==='Escape'){event.preventDefault();setMenu(false,true);}
+  if(event.key==='Tab'){
+    const items=[...menuOverlay.querySelectorAll('a,button')];
+    const first=items[0],last=items[items.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
   }
-
-  init() {
-    // Add canvas to the hero section
-    const hero = document.querySelector(".hero");
-    this.canvas.style.position = "absolute";
-    this.canvas.style.top = "0";
-    this.canvas.style.left = "0";
-    this.canvas.style.width = "100%";
-    this.canvas.style.height = "100%";
-    this.canvas.style.zIndex = "0";
-    hero.insertBefore(this.canvas, hero.firstChild);
-
-    // Set canvas size
-    this.resize();
-
-    // Create particles
-    this.createParticles();
-
-    // Event listeners
-    window.addEventListener("resize", () => this.resize());
-    document.addEventListener("mousemove", (e) => this.handleMouseMove(e));
-
-    // Start animation
-    this.animate();
+});
+const filterButtons = document.querySelectorAll('[data-filter]');
+const projectItems = document.querySelectorAll('.filter-project');
+const projectCount = document.querySelector('#project-count');
+function filterProjects(category) {
+  let count = 0;
+  projectItems.forEach(item => {
+    item.hidden = category !== 'all' && !item.dataset.category.split(/\s+/).includes(category);
+    if (!item.hidden) count++;
+  });
+  filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === category)));
+  if (projectCount) projectCount.textContent = arabic ? `${count} مشروع` : `${count} projects`;
+}
+filterButtons.forEach(button => button.addEventListener('click', () => filterProjects(button.dataset.filter)));
+if (projectItems.length) filterProjects('all');
+const form = document.querySelector('#contact-form');
+function showFormResult(success, message) {
+  const inlineStatus=document.querySelector('#form-status');if(inlineStatus)inlineStatus.hidden=true;
+  let popup=document.querySelector('#form-result-dialog');
+  if(!popup){
+    popup=document.createElement('dialog');popup.id='form-result-dialog';popup.className='form-result-dialog';
+    popup.setAttribute('aria-labelledby','form-result-title');popup.setAttribute('aria-describedby','form-result-message');
+    popup.innerHTML='<div class="result-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27"/><path class="result-check" d="m19 32 9 9 18-19"/><path class="result-error" d="m23 23 18 18m0-18-18 18"/></svg></div><h2 id="form-result-title"></h2><p id="form-result-message"></p><button class="button" type="button"></button>';
+    document.body.append(popup);
+    popup.querySelector('button').addEventListener('click',()=>popup.close());
+    popup.addEventListener('click',event=>{if(event.target===popup){const r=popup.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)popup.close();}});
+    popup.addEventListener('close',()=>{document.body.classList.remove('result-is-open');form?.querySelector('[type=submit]')?.focus({preventScroll:true});});
   }
-
-  resize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-
-    // Recreate particles on resize
-    this.createParticles();
+  popup.dataset.state=success?'success':'error';
+  popup.querySelector('h2').textContent=success?(arabic?'تم الإرسال بنجاح':'Sent successfully'):(arabic?'تعذّر الإرسال':'Could not send');
+  popup.querySelector('p').textContent=message;
+  popup.querySelector('button').textContent=success?(arabic?'تمام':'Done'):(arabic?'العودة والمحاولة مجددًا':'Back to try again');
+  document.body.classList.add('result-is-open');popup.showModal();
+}
+form?.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!form.reportValidity()) return;
+  const button = form.querySelector('[type=submit]');
+  const status = document.querySelector('#form-status');
+  if (button.disabled) return;
+  button.disabled = true;
+  status.hidden=false;
+  status.textContent = arabic ? 'جارٍ إرسال رسالتك…' : 'Sending your message…';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch(form.action, {method: 'POST', body: new FormData(form), headers: {Accept: 'application/json'}, signal: controller.signal});
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || data.errors) throw new Error('Submission failed');
+    if (!form.dataset.review) window.trackPortfolioEvent?.('generate_lead', {method: 'contact_form'});
+    form.reset();
+    status.textContent = form.dataset.review
+      ? (arabic ? 'شكرًا لتقييمك. تم استلامه للمراجعة وفق تفضيل النشر الذي اخترته.' : 'Thank you. Your review was received for review according to your publication preference.')
+      : (arabic ? 'تم استلام رسالتك بنجاح. سأرد عليك في أقرب وقت.' : 'Your message was received successfully. I’ll reply as soon as I can.');
+    showFormResult(true,status.textContent);
+  } catch (error) {
+    status.textContent = arabic ? 'تعذّر إرسال الرسالة. جرّب مرة أخرى أو تواصل عبر واتساب أو البريد الإلكتروني.' : 'Your message could not be sent. Please try again, or contact me by WhatsApp or email.';
+    showFormResult(false,status.textContent);
+  } finally {
+    clearTimeout(timeout);
+    button.disabled = false;
   }
+});
 
-  createParticles() {
-    this.particles = [];
-    const numberOfParticles = Math.floor(
-      (this.canvas.width * this.canvas.height) / 15000
-    );
+const glassHeader = document.querySelector('.site-header');
+if (glassHeader && 'IntersectionObserver' in window) {
+  const boundary = document.createElement('div');
+  boundary.setAttribute('aria-hidden', 'true');
+  boundary.style.cssText = 'position:absolute;top:0;width:1px;height:180px;pointer-events:none';
+  document.body.prepend(boundary);
+  new IntersectionObserver(([entry]) => glassHeader.classList.toggle('is-scrolled', !entry.isIntersecting)).observe(boundary);
+}
 
-    for (let i = 0; i < numberOfParticles; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 2 + 1,
-        speedX: Math.random() * 2 - 1,
-        speedY: Math.random() * 2 - 1,
-        color: "#237aaf",
-      });
+
+'use strict';
+
+// Final Matrix background: crisp glyphs everywhere, a few independently paced IN highlights.
+const matrixHero = document.querySelector('.home-page .hero');
+if (matrixHero) {
+  const matrixCanvas = document.createElement('canvas');
+  matrixCanvas.className='matrix-canvas';matrixCanvas.setAttribute('aria-hidden','true');
+  matrixHero.prepend(matrixCanvas);
+  const context=matrixCanvas.getContext('2d');
+  if(context){
+    let width=0,height=0,clock=0,frame=0,last=0,visible=true;
+    const seed=n=>((Math.sin(n*127.1+19.7)*43758.5453)%1+1)%1;
+    const glyphs=['{','}','[',']','<','>','/',';','=',':','&','|'];
+    function draw(){
+      context.clearRect(0,0,width,height);
+      context.textAlign='center';context.font='12px monospace';context.shadowBlur=0;
+      const spacing=width<600?36:44;
+      const columns=Math.ceil(width/spacing);
+      for(let col=0;col<columns;col++){
+        const x=col*spacing+18;
+        const speed=10+seed(col+70)*24;
+        const range=height+200;
+        const head=(seed(col+20)*range+clock*speed)%range-70;
+        for(let n=0;n<8;n++){
+          const y=head-n*24;
+          if(y<0||y>height)continue;
+          context.fillStyle=`rgba(215,237,135,${.035+(1-n/9)*.08})`;
+          context.fillText(glyphs[(col*5+n*3)%glyphs.length],x,y);
+        }
+        if(col%6===2){
+          // Independent speed, separate from the column, without flashing.
+          const y=(seed(col+130)*range+clock*(19+seed(col+150)*31))%range-70;
+          const alpha=.38+Math.sin(clock*.6+col)*.1;
+          context.font='600 13px monospace';
+          context.fillStyle=`rgba(215,237,135,${alpha})`;
+          context.shadowColor='rgba(215,237,135,.55)';context.shadowBlur=8;
+          context.fillText('IN',x,y);context.shadowBlur=0;context.font='12px monospace';
+        }
+      }
     }
-  }
-
-  handleMouseMove(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    this.mousePosition.x = e.clientX - rect.left;
-    this.mousePosition.y = e.clientY - rect.top;
-  }
-
-  drawParticles() {
-    this.particles.forEach((particle) => {
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-
-      // Wrap around edges
-      if (particle.x > this.canvas.width) particle.x = 0;
-      if (particle.x < 0) particle.x = this.canvas.width;
-      if (particle.y > this.canvas.height) particle.y = 0;
-      if (particle.y < 0) particle.y = this.canvas.height;
-
-      // Draw particle
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      this.ctx.fillStyle = particle.color;
-      this.ctx.fill();
-
-      // Connect particles
-      this.particles.forEach((otherParticle) => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 100) {
-          this.ctx.beginPath();
-          this.ctx.strokeStyle = `rgba(35, 122, 175, ${1 - distance / 100})`;
-          this.ctx.lineWidth = 0.5;
-          this.ctx.moveTo(particle.x, particle.y);
-          this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          this.ctx.stroke();
-        }
-
-        // Mouse interaction
-        if (this.mousePosition.x != null) {
-          const dx = particle.x - this.mousePosition.x;
-          const dy = particle.y - this.mousePosition.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < this.mousePosition.radius) {
-            const force =
-              (this.mousePosition.radius - distance) /
-              this.mousePosition.radius;
-            const directionX = dx / distance;
-            const directionY = dy / distance;
-            particle.x += directionX * force;
-            particle.y += directionY * force;
-          }
-        }
-      });
-    });
-  }
-
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.drawParticles();
-    requestAnimationFrame(() => this.animate());
+    function tick(now){
+      if(now-last>=40){clock+=Math.min((now-last)/1000,.1);last=now;draw();}
+      frame=requestAnimationFrame(tick);
+    }
+    function sync(){
+      cancelAnimationFrame(frame);last=performance.now();draw();
+      if(visible&&!document.hidden&&!motionPreference.matches)frame=requestAnimationFrame(tick);
+    }
+    function resize(){
+      width=matrixHero.clientWidth;height=matrixHero.clientHeight;
+      const ratio=Math.min(devicePixelRatio||1,2);
+      matrixCanvas.width=Math.round(width*ratio);matrixCanvas.height=Math.round(height*ratio);
+      context.setTransform(ratio,0,0,ratio,0,0);sync();
+    }
+    new ResizeObserver(resize).observe(matrixHero);
+    new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync();}).observe(matrixHero);
+    document.addEventListener('visibilitychange',sync);motionPreference.addEventListener('change',sync);resize();
   }
 }
-
-// Initialize canvas when the page loads
-window.addEventListener("load", () => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const lowPowerDevice = window.matchMedia("(max-width: 767px)").matches;
-  if (!reduceMotion && !lowPowerDevice) new ParticleCanvas();
-});
-
-// Keep the branded preloader visible briefly without waiting for lazy-loaded images.
-document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.querySelector(".loader");
-  if (!loader) return;
-  loader.classList.add("loader-hidden");
-  loader.addEventListener("transitionend", () => loader.remove(), { once: true });
-  setTimeout(() => loader.remove(), 500);
-});
-
-        // Select the scroll-to-top button and progress circle
-        const scrollToTopBtn = document.getElementById("scrollToTop");
-        const progressCircle = document.getElementById("progress");
-        
-        // Circumference of the progress circle (calculated from its radius)
-        const circumference = 251.2;
-        
-        // Event listener for scroll event to update progress bar and button visibility
-        window.addEventListener("scroll", () => {
-            let scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            let scrollTop = document.documentElement.scrollTop;
-            
-            // Calculate progress percentage and update stroke-dashoffset
-            let progress = (scrollTop / scrollHeight) * circumference;
-            progressCircle.style.strokeDashoffset = circumference - progress;
-            
-            // Show or hide the button based on scroll position
-            if (scrollTop > 100) {
-                scrollToTopBtn.style.opacity = 1;
-            } else {
-                scrollToTopBtn.style.opacity = 0;
-            }
-        });
-
-        // Event listener for button click to smoothly scroll to the top
-        scrollToTopBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });

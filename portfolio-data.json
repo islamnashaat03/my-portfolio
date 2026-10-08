@@ -1,0 +1,349 @@
+[
+  {
+    "name": "Islamnashaat Translation Toolkit",
+    "description": "A WordPress translation toolkit that streamlines reviewing and saving WPML translations across posts, pages, Elementor content, taxonomies, strings, and ACF fields.",
+    "image": "images/screens/islamnashaat-translation-toolkit.svg",
+    "category": "wordpress plugin-development",
+    "tags": [
+      "WordPress Plugin",
+      "WPML",
+      "Elementor",
+      "ACF"
+    ],
+    "links": [
+      "https://wordpress.org/plugins/islamnashaat-translation-toolkit/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Legal Pillars Law",
+    "description": "An Arabic law firm website presenting legal services, practice areas, attorneys, insights, and consultation requests through a clear, professional, and responsive experience.",
+    "image": "images/screens/legal-pillars-law.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "Arabic RTL",
+      "Responsive Design"
+    ],
+    "links": [
+      "https://works.targetlines.com/3adaed/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "New Concept",
+    "description": "A bilingual WooCommerce furniture store for the Saudi market, featuring curated home collections, promotional offers, product discovery, and a seamless responsive shopping experience.",
+    "image": "images/screens/new-concept_result.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "WordPress",
+      "WooCommerce",
+      "E-commerce",
+      "Elementor",
+      "Responsive Design"
+    ],
+    "links": [
+      "https://newconceptsa.com/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Tenpoint Therapeutics",
+    "description": "As part of the development team, I built the Presbyopia page for this global ophthalmology website, translating the approved design into a polished, responsive, and accessible web experience.",
+    "image": "images/screens/tenpoint-presbyopia.webp",
+    "category": "wordpress",
+    "tags": [
+      "Team Project",
+      "WordPress",
+      "Responsive Development"
+    ],
+    "links": [
+      "https://tenpointtherapeutics.com/presbyopia/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "SpyGlass Pharma",
+    "description": "As part of the development team, I built two key pages for SpyGlass Pharma: the Pipeline page and the Our Technology page, delivering responsive layouts, interactive content, and close attention to the supplied visual system.",
+    "image": "images/screens/spyglass-technology.webp",
+    "category": "wordpress",
+    "tags": [
+      "Team Project",
+      "WordPress",
+      "2 Pages"
+    ],
+    "links": [
+      "https://spyglasspharma.com/our-technology/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "DefEYE",
+    "description": "As part of the development team, I built the Persistent Epithelial Defects page for this eye-care biotechnology website, delivering its scientific content through a clear, responsive, and engaging layout.",
+    "image": "images/screens/defeye-ped.webp",
+    "category": "wordpress",
+    "tags": [
+      "Team Project",
+      "WordPress",
+      "Responsive Development"
+    ],
+    "links": [
+      "https://defeye.com/persistent-epithelial-defects/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Menarat Ebdaa",
+    "description": "A complete Arabic website I developed for an engineering consultancy in Riyadh, presenting its services, projects, team, insights, and contact pathways through a modern, responsive experience.",
+    "image": "images/screens/mnarat-ebdaa.webp",
+    "category": "wordpress",
+    "tags": [
+      "Full Website",
+      "WordPress",
+      "Elementor"
+    ],
+    "links": [
+      "https://mnarat-ebdaa.com/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Flzat",
+    "description": "A responsive Arabic healthcare platform that presents specialized care services, medical departments, success stories, and community initiatives through a clear and accessible user experience.",
+    "image": "images/screens/flzat_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "Responsive Design"
+    ],
+    "links": [
+      "https://wordpress.aait-sa.com/flzat/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "UN-IDU",
+    "description": "An international development platform presenting the organization's vision, initiatives, global partnerships, and community-focused programs through a professional, responsive, and accessible website.",
+    "image": "images/screens/un-idu_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "Responsive Design"
+    ],
+    "links": [
+      "https://un-idu.org/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "alphafood-machine",
+    "description": "A modern, responsive website for a leading supplier of food processing machinery in Saudi Arabia. This project features a clean, professional design with a comprehensive product catalog, detailed specifications, and an intuitive inquiry system to connect with clients efficiently.",
+    "image": "images/screens/alphafood-machinepng_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://alphafood-machine.com/"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Najd Club",
+    "description": "A comprehensive website solution for Najd Club, featuring a custom WordPress theme and seamless user experience.",
+    "image": "images/screens/webp/najdclub_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Custom Theme",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://najdclub.sa"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "Blood Bank SPA",
+    "description": "Vue.js-based single page application with\n                            real-time updates",
+    "image": "images/screens/webp/blood-bank_result.webp",
+    "category": "frontend",
+    "tags": [
+      "Vue.js",
+      "JavaScript",
+      "REST API"
+    ],
+    "links": [
+      "https://blood-bank-vue.netlify.app"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "miss natural Store",
+    "description": "A fully customized e-commerce platform for miss natural Store, featuring seamless integration with WooCommerce and a user-friendly design tailored for optimal shopping experiences.",
+    "image": "images/screens/miss-natural_result.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "WordPress",
+      "WooCommerce",
+      "Elementor"
+    ],
+    "links": [
+      "https://miss-natural.net"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "blackfox",
+    "description": "Blackfox is a leading provider of innovative social media and e-commerce solutions, dedicated to helping businesses enhance their online presence and drive sustainable growth in the digital landscape.",
+    "image": "images/screens/blackfox_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "Elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://blackfoxsolutions.co"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "muhak store",
+    "description": "Muhak Store is a leading online retailer offering a wide range of Shemagh . The website is built using Salla, a popular e-commerce platform in the Middle East, and features a modern and responsive design that provides a seamless user experience.",
+    "image": "images/screens/webp/muhakstore_result.webp",
+    "category": "salla",
+    "tags": [
+      "salla"
+    ],
+    "links": [
+      "https://muhakstore.com"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "mulzam law firm",
+    "description": "A prestigious law firm dedicated to delivering comprehensive legal services with a commitment to excellence, integrity, and client satisfaction.",
+    "image": "images/screens/webp/mulzm-lawfirm_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor"
+    ],
+    "links": [
+      "https://mulzm-lawfirm.com.sa"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "thefitnest",
+    "description": "The Fitnest is a premier online destination for fitness enthusiasts seeking high-quality sports nutrition, supplements, and fitness accessories. With a commitment to excellence and customer satisfaction, The Fitnest provides a seamless shopping experience, offering a wide range of products to support health and fitness goals.",
+    "image": "images/screens/thefitnest_result.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "wooCommerce",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://thefitnest-sa.com"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "tatweej",
+    "description": "Tatweej Contracting Company is a private company specializing in the implementation and completion of projects with high quality and professionalism. We work to provide integrated solutions in the field of contracting that meet the needs of our customers and achieve the highest standards of quality and safety.",
+    "image": "images/screens/tatweej_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://tatweej.net"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "cis-sud",
+    "description": "A professional platform for training and scientific research, providing reliable, high-quality content aligned with labor market needs and academic standards.",
+    "image": "images/screens/cis-sud_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://cis-sud.com"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "elias",
+    "description": "Landing page for Dr. Elias Alireza Filimban, a leader in the aviation industry, showcasing his expertise, achievements, and contributions to the field of aviation.",
+    "image": "images/screens/elias_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://eliasin.com"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "enjaz-lines-net",
+    "description": "Enjaz Lines for Engineering Consulting is a Saudi multi-disciplinary company that provides a comprehensive package of services.",
+    "image": "images/screens/enjaz-lines-net-_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "http://enjaz-lines.net"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "goolden-knights",
+    "description": "Golden Knights is a company specialized in designing and manufacturing kitchens. Your dream kitchen, we prepare it for you from A to Z",
+    "image": "images/screens/goolden-knights_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "elementor",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://goolden-knights.com"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "ESDF-eg",
+    "description": "The Egyptian Society of Diabetic Foot (ESDF) is a Non Governmental Organization. ESDF aims to enhance foot care for diabetic patients in Egypt and the Arab World through spreading knowledge and enhancing active collaboration between all specialties interested in saving limbs and lives of diabetic patients.",
+    "image": "images/screens/esdf-eg_result.webp",
+    "category": "wordpress",
+    "tags": [
+      "wordpress",
+      "Custom Theme",
+      "Performance Optimization"
+    ],
+    "links": [
+      "https://esdf-eg.com/home"
+    ],
+    "hidden": false
+  }
+]

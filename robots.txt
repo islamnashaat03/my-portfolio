@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.codex-remote-attachments/
+Disallow: /design/
+Sitemap: https://islamnashaat03.github.io/my-portfolio/sitemap.xml
