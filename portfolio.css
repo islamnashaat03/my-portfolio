@@ -233,3 +233,12 @@ footer .footer-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
  .hero-main>.actions .button,.hero-main>.actions .quote-link{font-size:15px;min-height:54px;padding:13px 21px}
  .hero-main>.availability{font-size:16px;line-height:1.6}
 }
+/* Native mobile project carousel: swipe, keyboard focus and RTL scroll snapping. */
+@media(max-width:760px){
+  .project-grid{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:4px 2px 20px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--green) var(--surface)}
+  .project-grid>.project{flex:0 0 88%;min-width:0;scroll-snap-align:start;scroll-snap-stop:normal}
+  .project-grid>.project[hidden]{display:none}
+  .project-grid::-webkit-scrollbar{height:5px}
+  .project-grid::-webkit-scrollbar-track{background:var(--surface);border-radius:8px}
+  .project-grid::-webkit-scrollbar-thumb{background:var(--green);border-radius:8px}
+}

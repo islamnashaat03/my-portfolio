@@ -776,6 +776,15 @@ footer .footer-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
  .hero-main>.actions .button,.hero-main>.actions .quote-link{font-size:15px;min-height:54px;padding:13px 21px}
  .hero-main>.availability{font-size:16px;line-height:1.6}
 }
+/* Native mobile project carousel: swipe, keyboard focus and RTL scroll snapping. */
+@media(max-width:760px){
+  .project-grid{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:2px;padding:4px 2px 20px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--green) var(--surface)}
+  .project-grid>.project{flex:0 0 88%;min-width:0;scroll-snap-align:start;scroll-snap-stop:normal}
+  .project-grid>.project[hidden]{display:none}
+  .project-grid::-webkit-scrollbar{height:5px}
+  .project-grid::-webkit-scrollbar-track{background:var(--surface);border-radius:8px}
+  .project-grid::-webkit-scrollbar-thumb{background:var(--green);border-radius:8px}
+}
 </style></head><body class="inner-page"><a class="skip" href="#main">انتقل إلى المحتوى</a><header class="site-header"><div class="header-inner"><a class="brand" href="index.html" aria-label="إسلام نشأت — الرئيسية"><span class="monogram" aria-hidden="true">IN<span>.</span></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">القائمة <span class="menu-icon" aria-hidden="true"></span></button><nav id="navigation" aria-label="القائمة الرئيسية"><a class=""  href="projects/index.html">الأعمال</a><a class=""  href="services/index.html">الخدمات</a><a class=""  href="index.html#about">عنّي</a><a class=""  href="index.html#skills">المهارات</a><a class="nav-contact"  href="index.html#contact">تواصل</a><a class="language" lang="en" href="../review.html">English</a></nav></div></header><main id="main"><section class="page-intro wrap review-intro"><h1>كيف كانت تجربة<br>العمل معي؟</h1><p>تقييمك الصادق يساعد العملاء على فهم تجربة العمل معي. أرحّب بالملاحظات الإيجابية واقتراحات التحسين.</p><p class="muted">حوالي ٣ دقائق. تتم مراجعة التقييم قبل نشره.</p></section>
 <section class="wrap section review-layout"><form id="contact-form" data-review="true" action="https://formspree.io/f/xwlpaegk" method="POST">
 <input type="hidden" name="_subject" value="Client review — Islam Nashaat"><input type="hidden" name="form_type" value="client_review"><div class="honeypot" aria-hidden="true"><label>Leave empty<input name="_gotcha" tabindex="-1"></label></div>
