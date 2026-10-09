@@ -2,7 +2,7 @@ import re
 """Generate a bilingual, crawlable static portfolio. Run with Python 3."""
 from pathlib import Path
 import json, re, html, shutil, os
-from portfolio_extras import evidence, review_page, testimonials, footer_controls, portfolio_evidence
+from portfolio_extras import evidence, review_page, testimonials, footer_controls, portfolio_evidence, esdf_optimized_evidence
 
 ROOT=Path(__file__).parent
 E=lambda s:html.escape(str(s),quote=True)
@@ -247,10 +247,10 @@ def build(lang):
         body+=''.join(f'<li>{x[i]}</li>' for x in stages)+f'</ol><h3>{"What I’ll need from you" if not ar else "ما أحتاجه منك"}</h3><p>{"Your goal, relevant website/design links, content or product data, and suitable account access when needed. Please share access securely after we agree on the work." if not ar else "هدفك وروابط الموقع أو التصميم والمحتوى أو بيانات المنتجات، وصلاحيات الحسابات المطلوبة عند الحاجة. نشارك الصلاحيات بشكل آمن بعد الاتفاق على العمل."}</p></div></section>'
         if examples:body+=f'<section class="wrap section"><div class="section-head"><div><h2>{tr("related")}</h2><p>{"Examples of relevant website types and implementation work." if not ar else "أمثلة لأنواع المواقع وأعمال التنفيذ المرتبطة."}</p></div></div><div class="project-grid">'+''.join(card(by_slug[x],'../../' if ar else '../').replace('href="../../projects/','href="../projects/') for x in examples)+'</div></section>'
         else:body+=f'<section class="wrap section"><h2>{"A scope based on your website" if not ar else "نطاق يناسب موقعك"}</h2><p>{"Share your website and the issue or goal. I’ll review the requirements and explain the proposed work before quoting." if not ar else "أرسل رابط موقعك والمشكلة أو الهدف. سأراجع المتطلبات وأوضّح العمل المقترح قبل التسعير."}</p></section>'
-        if slug=='speed-optimization':body+=portfolio_evidence(ar,'../../' if ar else '../')
+        if slug=='speed-optimization':body+=portfolio_evidence(ar,'../../' if ar else '../')+esdf_optimized_evidence(ar,'../../' if ar else '../')
         if slug=='speed-optimization':
             body+=f'<section class="wrap section"><h2>{"Measured project examples" if not ar else "أمثلة مشاريع بنتائج مقاسة"}</h2><p>{"Recorded handoff versions, ordered by mobile score. Both devices and original reports are included. Hosting changes and later client edits mean these are not controlled before/after comparisons." if not ar else "نسخ تسليم موثّقة مرتبة حسب درجة الموبايل، مع نتيجة الجهازين والتقارير الأصلية. اختلاف الاستضافة وتعديلات العميل اللاحقة يعني أنها ليست مقارنات تحسين قبل وبعد."}</p></section>'
-            for project_slug in ['legal-pillars-law','esdf-egypt','menarat-ebdaa','new-concept','un-idu']:
+            for project_slug in ['legal-pillars-law','menarat-ebdaa','new-concept','un-idu']:
                 body+=evidence(project_slug,ar,'../../' if ar else '../')
         body+=cta('../');write(f'services/{slug}.html',body,title[i],'services')
 

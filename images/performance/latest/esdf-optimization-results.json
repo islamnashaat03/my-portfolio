@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "url": "https://esdf-eg.com/home/",
+  "report": "https://pagespeed.web.dev/analysis/https-esdf-eg-com-home/acsfijfyyi",
+  "mobile": {
+    "performance": 98,
+    "fcp": 1.8,
+    "lcp": 1.8,
+    "tbt": 0,
+    "cls": 0,
+    "speedIndex": 1.9
+  },
+  "desktop": {
+    "performance": 99,
+    "fcp": 0.5,
+    "lcp": 0.8,
+    "tbt": 0,
+    "cls": 0,
+    "speedIndex": 1.2
+  }
+}
