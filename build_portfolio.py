@@ -160,7 +160,7 @@ def build(lang):
     def write(path,body,title,active=''):
         p=out/path;p.parent.mkdir(parents=True,exist_ok=True)
         page=shell(body,title,path,active).replace('20261008-23','20261008-24')
-        page=footer_controls(page,('../' if ar else '')+'../'*path.count('/')+'files/Islam-Nashaat-CV.pdf',ar).replace('20261008-24','20261011-motion2')
+        page=footer_controls(page,('../' if ar else '')+'../'*path.count('/')+'files/Islam-Nashaat-CV.pdf',ar).replace('20261008-24','20261011-menu-anchor')
         font_css=(Path('fonts/fonts.css').read_text(encoding='utf-8')).replace('url(', 'url('+('../' if ar else '')+'../'*path.count('/')+'fonts/')
         inline_css=Path('portfolio.css').read_text(encoding='utf-8').replace('url("images/', 'url("'+('../' if ar else '')+'../'*path.count('/')+'images/')
         page=re.sub(r'<link rel="preconnect"[^>]+>|<link href="https://fonts.googleapis.com[^>]+>|<link rel="stylesheet" href="[^"]*portfolio.css[^>]+>', '', page).replace('</head>', '<style>'+font_css+inline_css+'</style></head>')

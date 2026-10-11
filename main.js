@@ -129,6 +129,13 @@ function setMenu(open, restoreFocus=false) {
   menuOverlay.classList.toggle('is-open',open);
   menuOverlay.inert=!open;
   if(open) {
+    const brandRect = document.querySelector('.site-header .brand')?.getBoundingClientRect();
+    if(menuBrand && brandRect) {
+      menuBrand.style.left = `${brandRect.left}px`;
+      menuBrand.style.top = `${brandRect.top}px`;
+      menuBrand.style.width = `${brandRect.width}px`;
+      menuBrand.style.height = `${brandRect.height}px`;
+    }
     document.body.classList.add('menu-is-open');
     menuBackground.forEach(el=>el.inert=true);
     menuClose.focus({preventScroll:true});
