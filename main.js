@@ -247,60 +247,121 @@ if (glassHeader && 'IntersectionObserver' in window) {
 
 'use strict';
 
-// Final Matrix background: crisp glyphs everywhere, a few independently paced IN highlights.
-const matrixHero = document.querySelector('.home-page .hero');
-if (matrixHero && matchMedia('(min-width: 761px)').matches && !motionPreference.matches) {
+// One viewport-sized backdrop across all pages. Use the supplied crystal artwork
+// directly: screen compositing blends its black backdrop into the site surface.
+const crystalSource = document.querySelector('meta[name="portfolio-crystal"]')?.content;
+if (crystalSource) {
   const matrixCanvas = document.createElement('canvas');
-  matrixCanvas.className='matrix-canvas';matrixCanvas.setAttribute('aria-hidden','true');
-  matrixHero.prepend(matrixCanvas);
-  const context=matrixCanvas.getContext('2d');
-  if(context){
-    let width=0,height=0,clock=0,frame=0,last=0,visible=true;
-    const seed=n=>((Math.sin(n*127.1+19.7)*43758.5453)%1+1)%1;
-    const glyphs=['{','}','[',']','<','>','/',';','=',':','&','|'];
-    function draw(){
-      context.clearRect(0,0,width,height);
-      context.textAlign='center';context.font='12px monospace';context.shadowBlur=0;
-      const spacing=width<600?36:44;
-      const columns=Math.ceil(width/spacing);
-      for(let col=0;col<columns;col++){
-        const x=col*spacing+18;
-        const speed=10+seed(col+70)*24;
-        const range=height+200;
-        const head=(seed(col+20)*range+clock*speed)%range-70;
-        for(let n=0;n<8;n++){
-          const y=head-n*24;
-          if(y<0||y>height)continue;
-          context.fillStyle=`rgba(215,237,135,${.035+(1-n/9)*.08})`;
-          context.fillText(glyphs[(col*5+n*3)%glyphs.length],x,y);
-        }
-        if(col%6===2){
-          // Independent speed, separate from the column, without flashing.
-          const y=(seed(col+130)*range+clock*(19+seed(col+150)*31))%range-70;
-          const alpha=.38+Math.sin(clock*.6+col)*.1;
-          context.font='600 13px monospace';
-          context.fillStyle=`rgba(215,237,135,${alpha})`;
-          context.shadowColor='rgba(215,237,135,.55)';context.shadowBlur=8;
-          context.fillText('IN',x,y);context.shadowBlur=0;context.font='12px monospace';
+  matrixCanvas.className = 'matrix-canvas';
+  matrixCanvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(matrixCanvas);
+  const context = matrixCanvas.getContext('2d', {alpha: false});
+  if (context) {
+    const crystals = new Image();
+    const mobileBackdrop = matchMedia('(max-width: 760px)');
+    // Six views from the user's original sheet; no recreated or generated logo.
+    const views = [
+      [40, 12, 388, 345], [480, 10, 346, 336], [894, 14, 327, 340],
+      [21, 379, 468, 298], [505, 339, 330, 347], [897, 355, 350, 337]
+    ];
+    const positions = [[.07,.23],[.23,.67],[.91,.34],[.81,.81],[.13,.91],[.95,.96]];
+    const glyphs = ['{','}','[',']','<','>','/',';','=',':','&','|'];
+    const seed = n => ((Math.sin(n * 127.1 + 19.7) * 43758.5453) % 1 + 1) % 1;
+    let width = 0, height = 0, clock = 0, frame = 0, last = 0, scrollFrame = 0;
+    let heroVisible = Boolean(document.querySelector('.home-page .hero'));
+    let pageActive = true;
+    const hero = document.querySelector('.home-page .hero');
+    function draw() {
+      context.globalAlpha = 1;
+      context.globalCompositeOperation = 'source-over';
+      context.fillStyle = '#111414';
+      context.fillRect(0, 0, width, height);
+      context.textAlign = 'center';
+      context.font = '12px monospace';
+      const mobile = mobileBackdrop.matches;
+      const spacing = mobile ? 48 : 42;
+      const intensity = heroVisible ? 1 : .55;
+      const range = height + 160;
+      for (let col = 0; col < Math.ceil(width / spacing); col++) {
+        const x = col * spacing + 18;
+        const quietCenter = Math.abs(x / width - .5) < .27 ? .55 : 1;
+        const head = (seed(col + 20) * range + clock * (14 + seed(col + 70) * 20)) % range - 40;
+        for (let n = 0; n < (mobile ? 5 : 9); n++) {
+          const y = head - n * 26;
+          if (y < 0 || y > height) continue;
+          context.fillStyle = `rgba(215,237,135,${(.025 + (1 - n / 10) * .055) * quietCenter * intensity})`;
+          context.fillText(glyphs[(col * 5 + n * 3) % glyphs.length], x, y);
         }
       }
+      // Independent code fragments cross the middle at different speeds and
+      // directions, softly enough to keep the introduction readable.
+      const fragments = ['</>', '{ }', '[ ]', '=>', '&&', '( )', '++'];
+      for (let index = 0; index < (mobile ? 5 : 12); index++) {
+        const direction = index % 2 ? -1 : 1;
+        const x = width * (.2 + seed(index + 310) * .6) + Math.sin(clock * .18 + index) * (mobile ? 12 : 32);
+        const y = ((seed(index + 330) * range + direction * clock * (12 + seed(index + 350) * 20)) % range + range) % range - 40;
+        context.font = `${12 + index % 3 * 2}px monospace`;
+        context.fillStyle = `rgba(215,237,135,${(.065 + seed(index + 370) * .04) * intensity})`;
+        context.fillText(fragments[index % fragments.length], x, y);
+      }
+      if (!crystals.complete || !crystals.naturalWidth) return;
+      context.globalCompositeOperation = 'screen';
+      const selected = mobile ? [positions[0], positions[2], positions[4]] : positions;
+      selected.forEach(([px, py], index) => {
+        const view = views[mobile ? index * 2 : index];
+        const size = mobile ? 20 + index * 3 : 24 + seed(index + 200) * 10;
+        const crystalHeight = size * view[3] / view[2];
+        const x = width * px + (mobile ? 0 : Math.sin(clock * .12 + index) * 9);
+        const y = (height * py + clock * (20 + seed(index + 220) * 14)) % range - 20;
+        context.globalAlpha = (mobile ? .14 : .22) * intensity;
+        context.drawImage(crystals, ...view, x - size / 2, y - crystalHeight / 2, size, crystalHeight);
+      });
+      context.globalAlpha = 1;
+      context.globalCompositeOperation = 'source-over';
     }
-    function tick(now){
-      if(now-last>=40){clock+=Math.min((now-last)/1000,.1);last=now;draw();}
-      frame=requestAnimationFrame(tick);
+    function tick(now) {
+      // Cap painted frames at 20 fps on desktop and 15 fps on mobile.
+      if (now - last >= (mobileBackdrop.matches ? 1000 / 15 : 50)) {
+        clock += Math.min((now - last) / 1000, .1);
+        last = now;
+        draw();
+      }
+      frame = requestAnimationFrame(tick);
     }
-    function sync(){
-      cancelAnimationFrame(frame);last=performance.now();draw();
-      if(visible&&!document.hidden&&!motionPreference.matches&&matchMedia('(min-width: 761px)').matches)frame=requestAnimationFrame(tick);
+    function sync() {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      last = performance.now();
+      draw();
+      if (pageActive && !document.hidden && !motionPreference.matches) {
+        frame = requestAnimationFrame(tick);
+      }
     }
-    function resize(){
-      width=matrixHero.clientWidth;height=matrixHero.clientHeight;
-      const ratio=Math.min(devicePixelRatio||1,2);
-      matrixCanvas.width=Math.round(width*ratio);matrixCanvas.height=Math.round(height*ratio);
-      context.setTransform(ratio,0,0,ratio,0,0);sync();
+    function resize() {
+      width = document.documentElement.clientWidth;
+      height = window.innerHeight;
+      const ratio = Math.min(devicePixelRatio || 1, mobileBackdrop.matches ? 1.5 : 2);
+      matrixCanvas.width = Math.round(width * ratio);
+      matrixCanvas.height = Math.round(height * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      sync();
     }
-    new ResizeObserver(resize).observe(matrixHero);
-    new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync();}).observe(matrixHero);
-    document.addEventListener('visibilitychange',sync);motionPreference.addEventListener('change',sync);resize();
-  }
+    if (hero) {
+      new IntersectionObserver(([entry]) => {
+        heroVisible = entry.isIntersecting;
+        sync();
+      }, {threshold: .1}).observe(hero);
+    }
+    crystals.addEventListener('load', sync);
+    crystals.src = crystalSource;
+    window.addEventListener('resize', () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(() => {scrollFrame = 0; resize();});
+    }, {passive: true});
+    document.addEventListener('visibilitychange', sync);
+    motionPreference.addEventListener('change', sync);
+    mobileBackdrop.addEventListener('change', resize);
+    window.addEventListener('pagehide', () => {pageActive = false; cancelAnimationFrame(frame);});
+    window.addEventListener('pageshow', () => {pageActive = true; sync();});
+    resize();
+  } else matrixCanvas.remove();
 }
