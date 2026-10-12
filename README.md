@@ -3,6 +3,8 @@
 One-page employment portfolio in English and Arabic:
 https://islamnashaat03.github.io/my-portfolio/
 
+Arabic uses the approved Cairo font, self-hosted as WOFF2 with its license.
+
 Projects and contribution details, technical skills, leadership experience,
 measured technical results, education, languages, recruitment contact and CV.
 Six selected projects are shown initially; filters expose all 23 public projects.
