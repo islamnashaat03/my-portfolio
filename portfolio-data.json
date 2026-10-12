@@ -1,5 +1,22 @@
 [
   {
+    "name": "TaskFlow",
+    "description": "An AI-assisted React portfolio and learning project for managing tasks and projects with Kanban and list views, search, filters, browser-local persistence, and validated JSON backups.",
+    "image": "images/screens/taskflow.webp",
+    "category": "frontend",
+    "tags": [
+      "React",
+      "Vite",
+      "JavaScript",
+      "localStorage"
+    ],
+    "links": [
+      "https://islamnashaat03.github.io/my-portfolio/taskflow/"
+    ],
+    "source_url": "https://github.com/islamnashaat03/my-portfolio/tree/main/apps/taskflow",
+    "hidden": false
+  },
+  {
     "name": "Islamnashaat Translation Toolkit",
     "description": "A WordPress translation toolkit that streamlines reviewing and saving WPML translations across posts, pages, Elementor content, taxonomies, strings, and ACF fields.",
     "image": "images/screens/islamnashaat-translation-toolkit.svg",
