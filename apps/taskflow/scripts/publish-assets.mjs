@@ -5,7 +5,8 @@ import path from 'node:path';
 const app = fileURLToPath(new URL('../', import.meta.url));
 const output = path.resolve(app, '../../taskflow');
 const repository = path.resolve(app, '../..');
-if (path.relative(repository, output) !== 'taskflow') throw new Error('Unexpected build destination.');
+if (path.relative(repository, output) !== 'taskflow')
+  throw new Error('Unexpected build destination.');
 // Remove only generated files in this app's fixed destination. Preserve other files.
 await mkdir(output, { recursive: true });
 for (const name of await readdir(output)) {
