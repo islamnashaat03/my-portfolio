@@ -116,8 +116,9 @@ menuClose.innerHTML=`${arabic?'إغلاق':'Close'} <span class="close-icon" ari
 menuTop.append(menuClose);menuOverlay.append(menuTop);
 const menuQuote = document.createElement('a');
 menuQuote.className = 'button mobile-menu-quote';
-menuQuote.href = document.querySelector('.site-header a[href$="services/index.html"]')?.href || 'services/index.html';
-menuQuote.textContent = arabic ? 'اطلب عرض سعر' : 'Get a quote';
+const menuAction = document.querySelector('.site-header [data-menu-cta]');
+menuQuote.href = menuAction?.href || 'index.html#contact';
+menuQuote.textContent = menuAction?.dataset.menuCta || (arabic ? 'تواصل معي' : 'Contact me');
 menuOverlay.append(menuQuote);document.body.append(menuOverlay);
 let menuSequence=0;
 let menuCleanup;
@@ -192,7 +193,7 @@ function filterProjects(category) {
   if (projectCount) projectCount.textContent = arabic ? `${count} مشروع` : `${count} projects`;
 }
 filterButtons.forEach(button => button.addEventListener('click', () => filterProjects(button.dataset.filter)));
-if (projectItems.length) filterProjects('all');
+if (projectItems.length) filterProjects(document.querySelector('[data-filter][aria-pressed="true"]')?.dataset.filter || 'all');
 const form = document.querySelector('#contact-form');
 function showFormResult(success, message) {
   const inlineStatus=document.querySelector('#form-status');if(inlineStatus)inlineStatus.hidden=true;
@@ -371,4 +372,68 @@ if (crystalSource) {
     window.addEventListener('pageshow', () => {pageActive = true; sync();});
     resize();
   } else matrixCanvas.remove();
+}
+
+// Same-page project exploration for recruiters, including old case-study URLs.
+if (document.body.classList.contains('career-site')) {
+  const careerLanguage = document.querySelector('a.language');
+  function syncCareerAnchor() {
+    if (careerLanguage) careerLanguage.hash = location.hash;
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id.startsWith('project-')) return;
+    const project = document.getElementById(id);
+    if (!project) return;
+    filterProjects('all');
+    const details = project.querySelector('details');
+    if (details) details.open = true;
+    requestAnimationFrame(() => project.scrollIntoView({behavior: 'instant', block: 'start'}));
+  }
+  syncCareerAnchor();
+  window.addEventListener('hashchange', syncCareerAnchor);
+}
+
+// Template selection and custom-build links carry a useful quote brief.
+const quoteService = document.querySelector('#quote-service');
+const quoteApproach = document.querySelector('#quote-approach');
+const quoteTemplate = document.querySelector('#quote-template');
+const quoteSummary = document.querySelector('#quote-summary');
+if (quoteService && quoteApproach && quoteTemplate && quoteSummary) {
+  const params = new URLSearchParams(location.search);
+  const desiredService = params.get('service');
+  const desiredApproach = params.get('approach');
+  if ([...quoteService.options].some(option => option.value === desiredService)) quoteService.value = desiredService;
+  if ([...quoteApproach.options].some(option => option.value === desiredApproach)) quoteApproach.value = desiredApproach;
+  quoteTemplate.value = (params.get('template') || '').slice(0, 150);
+  if (quoteTemplate.value) quoteApproach.value = 'template';
+  function updateQuoteSummary() {
+    const selected = quoteService.selectedOptions[0];
+    const price = selected?.dataset.startingPrice;
+    const approach = quoteApproach.selectedOptions[0].textContent;
+    const template = quoteTemplate.value.trim();
+    quoteSummary.textContent = price
+      ? `${selected.textContent} — ${arabic ? 'تبدأ من' : 'from'} $${price}${quoteService.value === 'maintenance' ? (arabic ? ' / شهر' : ' / month') : ''}. ${approach}${template ? ': ' + template : ''}. ${arabic ? 'السعر النهائي بعد مراجعة النطاق.' : 'Final quote after a scope review.'}`
+      : (arabic ? 'اختار الخدمة لعرض سعرها المبدئي.' : 'Select a service to see its starting price.');
+    const language = document.querySelector('a.language');
+    if (language) {
+      const equivalent = new URL(language.href);
+      equivalent.search = '';
+      if (quoteService.value) equivalent.searchParams.set('service', quoteService.value);
+      equivalent.searchParams.set('approach', quoteApproach.value);
+      if (template) equivalent.searchParams.set('template', template);
+      if (location.hash) equivalent.hash = location.hash;
+      language.href = equivalent.href;
+    }
+  }
+  quoteService.addEventListener('change', updateQuoteSummary);
+  quoteApproach.addEventListener('change', () => {
+    if (quoteApproach.value !== 'template') quoteTemplate.value = '';
+    updateQuoteSummary();
+  });
+  quoteTemplate.addEventListener('input', updateQuoteSummary);
+  form?.addEventListener('reset', () => requestAnimationFrame(updateQuoteSummary));
+  updateQuoteSummary();
+  // Land on the brief after deferred setup, including a language change.
+  if (params.has('service') && location.hash === '#contact') {
+    requestAnimationFrame(() => document.getElementById('contact')?.scrollIntoView({behavior: 'instant', block: 'start'}));
+  }
 }
