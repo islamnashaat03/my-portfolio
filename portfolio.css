@@ -332,7 +332,11 @@ footer .brand-logo{width:36px;height:38px}
 @keyframes whatsapp-glow{0%,100%{opacity:.4;transform:scale(.96)}50%{opacity:.9;transform:scale(1.08)}}
 .services-site .whatsapp svg{stroke-width:1.7}
 .project-case summary:focus-visible,.price-item:focus-visible,.area-preview:focus-visible,.price-starts>a:focus-visible{outline:3px solid var(--green);outline-offset:6px}
-input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #234725;outline-offset:3px}
+/* Quiet field focus with smooth color feedback. */
+input,textarea,select{transition:border-color .22s ease,background-color .22s ease}
+input:focus,input:focus-visible,textarea:focus,textarea:focus-visible,select:focus,select:focus-visible{outline:none}
+.contact input:focus,.contact textarea:focus,.contact select:focus{border-color:#234725;background-color:#ffffff40}
+.review-layout input:focus,.review-layout textarea:focus,.review-layout select:focus{border-color:var(--green);background-color:#222b25}
 .career-site section[id],.career-site #skills,.services-site section[id]{scroll-margin-top:120px}
 @media(max-width:1050px){.area-item{gap:36px}.price-list{column-gap:32px}.service-about{gap:50px}.build-process{gap:28px}}
 @media(max-width:760px){
