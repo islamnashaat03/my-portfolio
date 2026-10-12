@@ -387,6 +387,8 @@ html[lang=ar]{--font:'Cairo',Arial,sans-serif;--heading:'Cairo',Arial,sans-serif
 .contact select option:hover,.contact select option:focus,.contact select option:checked,.review-layout select option:hover,.review-layout select option:focus,.review-layout select option:checked{background:#000;color:#fff}
 @supports(appearance:base-select){
  .contact select,.contact select::picker(select),.review-layout select,.review-layout select::picker(select){appearance:base-select}
+ .contact select,.review-layout select{display:flex;align-items:center;justify-content:space-between;gap:10px}
+ .contact select::picker-icon,.review-layout select::picker-icon{margin-inline-start:auto;flex-shrink:0}
  .contact select::picker(select){background:var(--green);color:#111414;border:1px solid #234725;border-radius:4px;font:inherit}
  .review-layout select::picker(select){background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;font:inherit}
  .contact select option,.review-layout select option{padding:10px 14px;min-height:44px;cursor:pointer;transition:background-color .18s ease,color .18s ease}
