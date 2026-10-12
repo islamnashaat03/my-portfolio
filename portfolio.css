@@ -382,3 +382,13 @@ html[lang=ar]{--font:'Cairo',Arial,sans-serif;--heading:'Cairo',Arial,sans-serif
 .career-site .whatsapp,.services-site .whatsapp{width:54px;height:54px;padding:0;gap:0;justify-content:center;border-radius:50%;background:#25d366;border-color:#25d366;color:#062a16}
 .career-site .whatsapp:hover,.services-site .whatsapp:hover{background:#25d366;border-color:#25d366;color:#062a16}
 .whatsapp svg{width:28px;height:28px;flex-shrink:0}
+
+/* Black/white hovered and selected options, with a styleable native picker. */
+.contact select option:hover,.contact select option:focus,.contact select option:checked,.review-layout select option:hover,.review-layout select option:focus,.review-layout select option:checked{background:#000;color:#fff}
+@supports(appearance:base-select){
+ .contact select,.contact select::picker(select),.review-layout select,.review-layout select::picker(select){appearance:base-select}
+ .contact select::picker(select){background:var(--green);color:#111414;border:1px solid #234725;border-radius:4px;font:inherit}
+ .review-layout select::picker(select){background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;font:inherit}
+ .contact select option,.review-layout select option{padding:10px 14px;min-height:44px;cursor:pointer;transition:background-color .18s ease,color .18s ease}
+ .contact select option::checkmark,.review-layout select option::checkmark{color:inherit}
+}
