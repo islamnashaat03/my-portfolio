@@ -29,7 +29,7 @@ for locale in ['', 'ar/']:
     assert sum(tag=='h1' for tag,a in doc.nodes)==1
     if career:
         assert {'skills','experience','impact'} <= ids
-        assert sum(tag=='article' and a.get('id','').startswith('project-') for tag,a in doc.nodes)==25
+        assert sum(tag=='article' and a.get('id','').startswith('project-') for tag,a in doc.nodes)==26
         assert any('download' in a for a in anchors)
         assert not any('services/' in a.get('href','') for a in anchors)
         assert not re.search(r'\$\d+',text)
@@ -65,6 +65,6 @@ for page in paths:
                     quote_links+=1
 
 locations=[node.text for node in ET.parse(root/'sitemap.xml').getroot().iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-assert len(locations)==(2 if career else 98)
+assert len(locations)==(2 if career else 100)
 if not career:assert quote_links>=20
 print(json.dumps({'profile':'career' if career else 'services','pages':len(paths),'sitemap_urls':len(locations),'valid_template_quote_links':quote_links,'passed':True},indent=2))

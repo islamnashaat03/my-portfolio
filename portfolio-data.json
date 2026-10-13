@@ -1,5 +1,23 @@
 [
   {
+    "name": "Arc De Sol",
+    "description": "A bilingual WooCommerce store for furniture, lighting and decor, with product collections and furniture customization enquiries.",
+    "image": "images/screens/arc-de-sol.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "WPML",
+      "WoodMart"
+    ],
+    "links": [
+      "https://arcdesol.sa/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
     "name": "Rose De Lora",
     "description": "A bilingual WooCommerce perfume store presenting fragrance categories and sample sizes.",
     "image": "images/screens/rose-de-lora.webp",

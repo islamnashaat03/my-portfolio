@@ -111,11 +111,11 @@ def template_gallery(service_id, projects, services, ar, prefix='../'):
     by_slug = {p['slug']:p for p in projects}
     service = next((s for s in services if s[0] == service_id),None)
     custom_examples = {
-        'stores':['rose-de-lora','new-concept','miss-natural','the-fitnest','muhak-store'],
+        'stores':['arc-de-sol','rose-de-lora','new-concept','miss-natural','the-fitnest','muhak-store'],
         'websites':['aleid','legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
         'business-website':['aleid','legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
         'landing-page':['dr-elias-filimban'],
-        'woocommerce-store':['rose-de-lora','new-concept','miss-natural','the-fitnest'],
+        'woocommerce-store':['arc-de-sol','rose-de-lora','new-concept','miss-natural','the-fitnest'],
         'salla-store':['muhak-store']
     }
     group_services = {'websites':'business-website', 'stores':'woocommerce-store', 'design-implementation':'figma-to-wordpress', 'custom-solutions':'plugin-development', 'performance-fixes':'speed-optimization', 'website-care':'maintenance'}
