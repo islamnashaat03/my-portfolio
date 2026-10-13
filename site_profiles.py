@@ -59,7 +59,7 @@ def career_project(project, cases, ar):
     else:
         details = f'<p>{E(p["summary"][i])}</p><p>{t("The preview and live link show the delivered project. Detailed delivery timings are not documented for this earlier work.", "تعرض المعاينة والرابط المشروع المسلّم. لا تتوفر تفاصيل موثّقة عن مدة تنفيذ هذا العمل السابق.")}</p>'
     details += f'<p class="project-tools" dir="ltr">{E(" · ".join(p["tags"]))}</p>'
-    return f'''<article id="project-{E(p['slug'])}" class="project filter-project" data-category="{E(p['category'])}{' selected' if c else ''}"><a class="project-preview" href="{E(p['links'][0])}" target="_blank" rel="noopener" aria-label="{E(p['name'])} — {t('view live project', 'زيارة المشروع')}"><img src="{prefix}{E(p['image'])}" alt="{E(p['name'])}" width="900" height="520" loading="lazy" decoding="async"></a><div class="project-caption"><div><p class="project-type">{E(' / '.join(p['tags'][:2]))}</p><h3>{E(p['name'])}</h3></div></div><p class="project-summary">{E(p['summary'][i])}</p>{f'<p class="project-role">{E(c["role"][i])}</p>' if c else ''}<details class="project-case"><summary>{t('My role & implementation', 'دوري وتفاصيل التنفيذ')}</summary><div>{details}<a class="text-link" href="{E(p['links'][0])}" target="_blank" rel="noopener">{t('View live project', 'زيارة المشروع')}</a></div></details></article>'''
+    return f'''<article id="project-{E(p['slug'])}" class="project filter-project" data-category="{E(p['category'])}{' selected' if c or p.get('featured') else ''}"><a class="project-preview" href="{E(p['links'][0])}" target="_blank" rel="noopener" aria-label="{E(p['name'])} — {t('view live project', 'زيارة المشروع')}"><img src="{prefix}{E(p['image'])}" alt="{E(p['name'])}" width="900" height="520" loading="lazy" decoding="async"></a><div class="project-caption"><div><p class="project-type">{E(' / '.join(p['tags'][:2]))}</p><h3>{E(p['name'])}</h3></div></div><p class="project-summary">{E(p['summary'][i])}</p>{f'<p class="project-role">{E(c["role"][i])}</p>' if c else ''}<details class="project-case"><summary>{t('My role & implementation', 'دوري وتفاصيل التنفيذ')}</summary><div>{details}<a class="text-link" href="{E(p['links'][0])}" target="_blank" rel="noopener">{t('View live project', 'زيارة المشروع')}</a></div></details></article>'''
 
 
 def career_home(original, ar, projects, recent, cases, services):
@@ -111,11 +111,11 @@ def template_gallery(service_id, projects, services, ar, prefix='../'):
     by_slug = {p['slug']:p for p in projects}
     service = next((s for s in services if s[0] == service_id),None)
     custom_examples = {
-        'stores':['new-concept','miss-natural','the-fitnest','muhak-store'],
-        'websites':['legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
-        'business-website':['legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
+        'stores':['rose-de-lora','new-concept','miss-natural','the-fitnest','muhak-store'],
+        'websites':['aleid','legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
+        'business-website':['aleid','legal-pillars-law','menarat-ebdaa','alpha-food-machinery','enjaz-lines'],
         'landing-page':['dr-elias-filimban'],
-        'woocommerce-store':['new-concept','miss-natural','the-fitnest'],
+        'woocommerce-store':['rose-de-lora','new-concept','miss-natural','the-fitnest'],
         'salla-store':['muhak-store']
     }
     group_services = {'websites':'business-website', 'stores':'woocommerce-store', 'design-implementation':'figma-to-wordpress', 'custom-solutions':'plugin-development', 'performance-fixes':'speed-optimization', 'website-care':'maintenance'}

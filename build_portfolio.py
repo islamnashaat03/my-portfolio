@@ -69,6 +69,8 @@ for slug,pages,ar_pages in [('spyglass-pharma','Pipeline and Our Technology page
 
 # Concise archive descriptions avoid assigning unverified technical decisions.
 archive={
+'rose-de-lora':['A bilingual WooCommerce perfume store with fragrance categories and sample sizes.','متجر عطور ووكومرس بلغتين يعرض أقسام العطور وأحجام العينات.'],
+'aleid':['A bilingual business website for heavy equipment and spare parts, presenting brands, products, services and quote requests.','موقع تعريفي بلغتين للمعدات الثقيلة وقطع الغيار، يعرض العلامات التجارية والمنتجات والخدمات وطلبات عروض الأسعار.'],
 'defeye':['A responsive implementation of the Persistent Epithelial Defects page, contributed as part of a development team.','تنفيذ متجاوب لصفحة Persistent Epithelial Defects ضمن فريق تطوير.'],
 'flzat':['An Arabic healthcare website presenting care services, departments, and community initiatives.','موقع عربي يعرض خدمات الرعاية الصحية والأقسام والمبادرات المجتمعية.'],
 'un-idu':['An organization website presenting its vision, initiatives, and international partnerships.','موقع مؤسسة يعرض رؤيتها ومبادراتها وشراكاتها الدولية.'],
@@ -91,7 +93,7 @@ for p in projects:
     p['summary']=c['summary'] if c else archive[p['slug']]
     if c:p['tags']=c['tags']
 by_slug={p['slug']:p for p in projects}
-recent=[by_slug[s] for s in ['translation-toolkit','legal-pillars-law','new-concept','menarat-ebdaa','spyglass-pharma','tenpoint-therapeutics']]
+recent=[by_slug[s] for s in ['rose-de-lora','aleid','translation-toolkit','legal-pillars-law','new-concept','menarat-ebdaa','spyglass-pharma','tenpoint-therapeutics']]
 
 # slug, bilingual title/summary, USD starting price, scope, examples.
 services=[

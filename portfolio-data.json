@@ -1,5 +1,40 @@
 [
   {
+    "name": "Rose De Lora",
+    "description": "A bilingual WooCommerce perfume store presenting fragrance categories and sample sizes.",
+    "image": "images/screens/rose-de-lora.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "WordPress",
+      "WooCommerce",
+      "Elementor",
+      "WPML",
+      "WoodMart"
+    ],
+    "links": [
+      "https://rosedelora.com/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
+    "name": "Aleid",
+    "description": "A bilingual business website for heavy equipment and spare parts, presenting brands, products, services and quote requests.",
+    "image": "images/screens/aleid.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "WPML",
+      "Arabic RTL"
+    ],
+    "links": [
+      "https://aleid.co/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
     "name": "Islamnashaat Translation Toolkit",
     "description": "A WordPress translation toolkit that streamlines reviewing and saving WPML translations across posts, pages, Elementor content, taxonomies, strings, and ACF fields.",
     "image": "images/screens/islamnashaat-translation-toolkit.svg",
