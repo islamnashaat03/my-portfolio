@@ -235,7 +235,7 @@ form?.addEventListener('submit', async event => {
       : (arabic ? 'تم استلام رسالتك بنجاح. سأرد عليك في أقرب وقت.' : 'Your message was received successfully. I’ll reply as soon as I can.');
     showFormResult(true,status.textContent);
   } catch (error) {
-    status.textContent = arabic ? 'تعذّر إرسال الرسالة. جرّب مرة أخرى أو تواصل عبر واتساب أو البريد الإلكتروني.' : 'Your message could not be sent. Please try again, or contact me by WhatsApp or email.';
+    status.textContent = arabic ? 'تعذّر إرسال الرسالة. جرّب مرة أخرى أو راسلني على info@islamnashaat.com.' : 'Your message could not be sent. Please try again, or email info@islamnashaat.com.';
     showFormResult(false,status.textContent);
   } finally {
     clearTimeout(timeout);

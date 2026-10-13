@@ -60,7 +60,7 @@ def esdf_optimized_evidence(ar=False, prefix='../'):
 def review_page(ar=False):
     def t(en,arab): return arab if ar else en
     return f'''<section class="page-intro wrap review-intro"><h1>{t('How was working<br>with me?','كيف كانت تجربة<br>العمل معي؟')}</h1><p>{t('A short, honest review helps future clients understand what working together is like. Positive feedback and suggestions are both welcome.','تقييمك الصادق يساعد العملاء على فهم تجربة العمل معي. أرحّب بالملاحظات الإيجابية واقتراحات التحسين.')}</p><p class="muted">{t('About 3 minutes. Your review is checked before publication.','حوالي ٣ دقائق. تتم مراجعة التقييم قبل نشره.')}</p></section>
-<section class="wrap section review-layout"><form id="contact-form" data-review="true" action="https://formspree.io/f/xwlpaegk" method="POST">
+<section class="wrap section review-layout"><form id="contact-form" data-review="true" action="https://formspree.io/f/mjygaojy" method="POST">
 <input type="hidden" name="_subject" value="Client review — Islam Nashaat"><input type="hidden" name="form_type" value="client_review"><div class="honeypot" aria-hidden="true"><label>Leave empty<input name="_gotcha" tabindex="-1"></label></div>
 <div class="form-row"><label>{t('Your name','اسمك')}<input name="name" required maxlength="100" autocomplete="name"></label><label>{t('Email (private, for follow-up)','البريد الإلكتروني (خاص للمتابعة)')}<input name="email" type="email" required maxlength="254" autocomplete="email" dir="ltr"></label></div>
 <div class="form-row"><label>{t('Role / business (optional)','الوظيفة / النشاط (اختياري)')}<input name="role_business" maxlength="150"></label><label>{t('Project / service','المشروع / الخدمة')}<input name="project" required maxlength="150"></label></div>
