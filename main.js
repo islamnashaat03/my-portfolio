@@ -411,7 +411,7 @@ if (quoteService && quoteApproach && quoteTemplate && quoteSummary) {
     const approach = quoteApproach.selectedOptions[0].textContent;
     const template = quoteTemplate.value.trim();
     quoteSummary.textContent = price
-      ? `${selected.textContent} — ${arabic ? 'تبدأ من' : 'from'} $${price}${quoteService.value === 'maintenance' ? (arabic ? ' / شهر' : ' / month') : ''}. ${approach}${template ? ': ' + template : ''}. ${arabic ? 'السعر النهائي بعد مراجعة النطاق.' : 'Final quote after a scope review.'}`
+      ? `${selected.textContent} — ${arabic ? 'تبدأ من' : 'from'} ${Number(price).toLocaleString('en-US')} ${arabic ? 'ج.م' : 'EGP'}${quoteService.value === 'maintenance' ? (arabic ? ' / شهر' : ' / month') : ''}. ${approach}${template ? ': ' + template : ''}. ${arabic ? 'السعر النهائي بعد مراجعة النطاق.' : 'Final quote after a scope review.'}`
       : (arabic ? 'اختار الخدمة لعرض سعرها المبدئي.' : 'Select a service to see its starting price.');
     const language = document.querySelector('a.language');
     if (language) {
@@ -436,4 +436,33 @@ if (quoteService && quoteApproach && quoteTemplate && quoteSummary) {
   if (params.has('service') && location.hash === '#contact') {
     requestAnimationFrame(() => document.getElementById('contact')?.scrollIntoView({behavior: 'instant', block: 'start'}));
   }
+}
+
+const quotePackage = document.querySelector('#quote-package');
+const bundleServices = ['business-website', 'landing-page', 'woocommerce-store'];
+if (quotePackage && quoteService) {
+  const requestedPackage = new URLSearchParams(location.search).get('package');
+  if (requestedPackage === 'bundle' && bundleServices.includes(quoteService.value)) quotePackage.value = 'bundle';
+  function updatePackageChoice() {
+    const eligible = bundleServices.includes(quoteService.value);
+    const bundleOption = quotePackage.querySelector('[value=bundle]');
+    bundleOption.disabled = !eligible;
+    if (!eligible) quotePackage.value = 'build';
+    const selected = quoteService.selectedOptions[0];
+    const amount = Number(selected?.dataset.startingPrice || 0);
+    if (!amount) return;
+    const format = n => n.toLocaleString('en-US') + (arabic ? ' ج.م' : ' EGP');
+    const packageText = quotePackage.value === 'bundle'
+      ? `${arabic ? 'التنفيذ' : 'Build'} ${format(amount)} + ${arabic ? 'استضافة ودومين عادي لأول سنة' : 'first-year hosting and standard domain'} ${format(5000)}. ${arabic ? 'الباقة بعد الخصم' : 'Discounted bundle'}: ${format(amount + 3000)}.`
+      : `${selected.textContent} — ${arabic ? 'من' : 'from'} ${format(amount)}${quoteService.value === 'maintenance' ? (arabic ? ' / شهر' : ' / month') : ''}. ${arabic ? 'التنفيذ فقط؛ السعر النهائي حسب النطاق.' : 'Build only; final quote depends on scope.'}`;
+    quoteSummary.textContent = packageText + (quoteTemplate.value.trim() ? ` ${arabic ? 'النموذج' : 'Template'}: ${quoteTemplate.value.trim()}.` : '');
+    const language = document.querySelector('a.language');
+    if (language) { const target = new URL(language.href); target.searchParams.set('package', quotePackage.value); language.href = target.href; }
+  }
+  quotePackage.addEventListener('change', updatePackageChoice);
+  quoteService.addEventListener('change', updatePackageChoice);
+  quoteApproach.addEventListener('change', updatePackageChoice);
+  quoteTemplate.addEventListener('input', updatePackageChoice);
+  form?.addEventListener('reset', () => requestAnimationFrame(updatePackageChoice));
+  updatePackageChoice();
 }

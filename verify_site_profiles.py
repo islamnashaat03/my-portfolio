@@ -29,7 +29,7 @@ for locale in ['', 'ar/']:
     assert sum(tag=='h1' for tag,a in doc.nodes)==1
     if career:
         assert {'skills','experience','impact'} <= ids
-        assert sum(tag=='article' and a.get('id','').startswith('project-') for tag,a in doc.nodes)==26
+        assert sum(tag=='article' and a.get('id','').startswith('project-') for tag,a in doc.nodes)==30
         assert any('download' in a for a in anchors)
         assert not any('services/' in a.get('href','') for a in anchors)
         assert not re.search(r'\$\d+',text)
@@ -38,9 +38,9 @@ for locale in ['', 'ar/']:
         assert {'services','process','quote-service','quote-template','quote-approach'} <= ids
         assert not any('download' in a or a.get('href','').endswith('CV.pdf') for a in anchors)
         assert sum('area-item' in a.get('class','').split() for tag,a in doc.nodes)==3
-        assert sum('price-item' in a.get('class','').split() for tag,a in doc.nodes)==14
+        assert sum('price-item' in a.get('class','').split() for tag,a in doc.nodes)==17
         allowed_services.update(a['value'] for tag,a in doc.nodes if tag=='option' and a.get('data-starting-price'))
-        assert len(allowed_services)==14
+        assert len(allowed_services)==17
 
 paths=[root/'index.html',root/'review.html',root/'performance.html',*sorted((root/'projects').glob('*.html')),*sorted((root/'services').glob('*.html')),*sorted((root/'ar').rglob('*.html'))]
 quote_links=0
@@ -65,6 +65,6 @@ for page in paths:
                     quote_links+=1
 
 locations=[node.text for node in ET.parse(root/'sitemap.xml').getroot().iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-assert len(locations)==(2 if career else 100)
+assert len(locations)==(2 if career else 114)
 if not career:assert quote_links>=20
 print(json.dumps({'profile':'career' if career else 'services','pages':len(paths),'sitemap_urls':len(locations),'valid_template_quote_links':quote_links,'passed':True},indent=2))

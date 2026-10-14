@@ -1,5 +1,91 @@
 [
   {
+    "name": "UN-IDU Store",
+    "name_ar": "متجر الاتحاد الدبلوماسي الدولي",
+    "slug": "un-idu-store",
+    "description": "A WooCommerce store for diplomatic training programmes, separate from the organisation’s corporate website.",
+    "summary": [
+      "A WooCommerce store for diplomatic training programmes, separate from the organisation’s corporate website.",
+      "متجر ووكومرس لبرامج التدريب الدبلوماسي، مستقل عن الموقع التعريفي للمؤسسة."
+    ],
+    "image": "images/screens/un-idu-store.webp",
+    "category": "wordpress ecommerce",
+    "tags": [
+      "WordPress",
+      "WooCommerce"
+    ],
+    "links": [
+      "https://s.un-idu.org/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
+    "name": "Waw Kindergarten",
+    "name_ar": "روضة واو",
+    "slug": "waw-edu",
+    "description": "A bilingual kindergarten website presenting its learning environment, programmes and registration information.",
+    "summary": [
+      "A bilingual kindergarten website presenting its learning environment, programmes and registration information.",
+      "موقع تعريفي بلغتين لروضة أطفال يعرض البيئة التعليمية والأنشطة ومعلومات التسجيل."
+    ],
+    "image": "images/screens/waw-edu.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "WPML"
+    ],
+    "links": [
+      "https://waw-edu.com/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
+    "name": "Siyamak Seha",
+    "name_ar": "صيامك صحة",
+    "slug": "siyamak-seha",
+    "description": "A bilingual marketing website presenting a fasting and nutrition app; the project shown is the website interface.",
+    "summary": [
+      "A bilingual marketing website presenting a fasting and nutrition app; the project shown is the website interface.",
+      "موقع تعريفي بلغتين لتطبيق الصيام والتغذية؛ العمل المعروض هو واجهة الموقع الإلكتروني."
+    ],
+    "image": "images/screens/siyamak-seha.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "Elementor",
+      "WPML"
+    ],
+    "links": [
+      "https://siyamakseha.com/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
+    "name": "Waslat Care",
+    "name_ar": "وصلة كير",
+    "slug": "waslat-care",
+    "description": "A bilingual marketing website presenting a medical appointment platform and demo requests; the website is distinct from the app.",
+    "summary": [
+      "A bilingual marketing website presenting a medical appointment platform and demo requests; the website is distinct from the app.",
+      "موقع تعريفي بلغتين لمنصة إدارة المواعيد الطبية وطلبات العرض التجريبي؛ الموقع مستقل عن التطبيق."
+    ],
+    "image": "images/screens/waslat-care.webp",
+    "category": "wordpress",
+    "tags": [
+      "WordPress",
+      "WPML"
+    ],
+    "links": [
+      "https://waslatcare.com/"
+    ],
+    "hidden": false,
+    "featured": true
+  },
+  {
     "name": "Arc De Sol",
     "description": "A bilingual WooCommerce store for furniture, lighting and decor, with product collections and furniture customization enquiries.",
     "image": "images/screens/arc-de-sol.webp",
@@ -15,7 +101,8 @@
       "https://arcdesol.sa/"
     ],
     "hidden": false,
-    "featured": true
+    "featured": true,
+    "name_ar": "آرك دي سول"
   },
   {
     "name": "Rose De Lora",
@@ -33,7 +120,8 @@
       "https://rosedelora.com/"
     ],
     "hidden": false,
-    "featured": true
+    "featured": true,
+    "name_ar": "روز دي لورا"
   },
   {
     "name": "Aleid",
@@ -50,7 +138,8 @@
       "https://aleid.co/"
     ],
     "hidden": false,
-    "featured": true
+    "featured": true,
+    "name_ar": "العيد"
   },
   {
     "name": "Islamnashaat Translation Toolkit",
@@ -66,7 +155,8 @@
     "links": [
       "https://wordpress.org/plugins/islamnashaat-translation-toolkit/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "أداة إسلام نشأت للترجمة"
   },
   {
     "name": "Legal Pillars Law",
@@ -82,7 +172,8 @@
     "links": [
       "https://works.targetlines.com/3adaed/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "الدعائم القانونية"
   },
   {
     "name": "New Concept",
@@ -99,7 +190,8 @@
     "links": [
       "https://newconceptsa.com/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "نيو كونسبت"
   },
   {
     "name": "Tenpoint Therapeutics",
@@ -114,7 +206,8 @@
     "links": [
       "https://tenpointtherapeutics.com/presbyopia/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "تين بوينت ثيرابيوتكس"
   },
   {
     "name": "SpyGlass Pharma",
@@ -129,7 +222,8 @@
     "links": [
       "https://spyglasspharma.com/our-technology/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "سباي جلاس فارما"
   },
   {
     "name": "DefEYE",
@@ -144,7 +238,8 @@
     "links": [
       "https://defeye.com/persistent-epithelial-defects/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "ديف آي"
   },
   {
     "name": "Menarat Ebdaa",
@@ -159,7 +254,8 @@
     "links": [
       "https://mnarat-ebdaa.com/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "منارات إبداع"
   },
   {
     "name": "Flzat",
@@ -174,12 +270,13 @@
     "links": [
       "https://wordpress.aait-sa.com/flzat/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "فلزات"
   },
   {
     "name": "UN-IDU",
     "description": "An international development platform presenting the organization's vision, initiatives, global partnerships, and community-focused programs through a professional, responsive, and accessible website.",
-    "image": "images/screens/un-idu_result.webp",
+    "image": "images/screens/un-idu-20261014.webp",
     "category": "wordpress",
     "tags": [
       "WordPress",
@@ -189,7 +286,8 @@
     "links": [
       "https://un-idu.org/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "الاتحاد الدبلوماسي الدولي"
   },
   {
     "name": "alphafood-machine",
@@ -204,7 +302,8 @@
     "links": [
       "https://alphafood-machine.com/"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "ألفا فود للمعدات"
   },
   {
     "name": "Najd Club",
@@ -219,7 +318,8 @@
     "links": [
       "https://najdclub.sa"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "نادي نجد"
   },
   {
     "name": "Blood Bank SPA",
@@ -234,7 +334,8 @@
     "links": [
       "https://blood-bank-vue.netlify.app"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "تطبيق بنك الدم"
   },
   {
     "name": "miss natural Store",
@@ -249,7 +350,8 @@
     "links": [
       "https://miss-natural.net"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "مس ناتشورال"
   },
   {
     "name": "blackfox",
@@ -264,7 +366,8 @@
     "links": [
       "https://blackfoxsolutions.co"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "بلاك فوكس"
   },
   {
     "name": "muhak store",
@@ -277,7 +380,8 @@
     "links": [
       "https://muhakstore.com"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "متجر محاك"
   },
   {
     "name": "mulzam law firm",
@@ -291,7 +395,8 @@
     "links": [
       "https://mulzm-lawfirm.com.sa"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "مكتب ملزم للمحاماة"
   },
   {
     "name": "thefitnest",
@@ -307,7 +412,8 @@
     "links": [
       "https://thefitnest-sa.com"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "ذا فيتنس"
   },
   {
     "name": "tatweej",
@@ -322,7 +428,8 @@
     "links": [
       "https://tatweej.net"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "تتويج"
   },
   {
     "name": "cis-sud",
@@ -337,7 +444,8 @@
     "links": [
       "https://cis-sud.com"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "سي آي إس السودان"
   },
   {
     "name": "elias",
@@ -352,7 +460,8 @@
     "links": [
       "https://eliasin.com"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "د. إلياس فلمبان"
   },
   {
     "name": "enjaz-lines-net",
@@ -367,7 +476,8 @@
     "links": [
       "http://enjaz-lines.net"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "إنجاز لاينز"
   },
   {
     "name": "goolden-knights",
@@ -382,7 +492,8 @@
     "links": [
       "https://goolden-knights.com"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "الفرسان الذهبيون"
   },
   {
     "name": "ESDF-eg",
@@ -397,6 +508,7 @@
     "links": [
       "https://esdf-eg.com/home"
     ],
-    "hidden": false
+    "hidden": false,
+    "name_ar": "الجمعية المصرية للقدم السكري"
   }
 ]
